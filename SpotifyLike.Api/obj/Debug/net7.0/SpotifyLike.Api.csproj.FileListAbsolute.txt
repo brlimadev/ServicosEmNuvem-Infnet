@@ -1,10 +1,3 @@
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.csproj.AssemblyReference.cache
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.GeneratedMSBuildEditorConfig.editorconfig
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.AssemblyInfoInputs.cache
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.AssemblyInfo.cs
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.csproj.CoreCompileInputs.cache
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.MvcApplicationPartsAssemblyInfo.cs
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.MvcApplicationPartsAssemblyInfo.cache
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/appsettings.Development.json
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/appsettings.json
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/SpotifyLike.Api
@@ -73,6 +66,13 @@
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Spotify.Application.pdb
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/SpotifyLike.Repository.pdb
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/SpotifyLike.Domain.pdb
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.csproj.AssemblyReference.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.GeneratedMSBuildEditorConfig.editorconfig
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.AssemblyInfoInputs.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.AssemblyInfo.cs
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.csproj.CoreCompileInputs.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.MvcApplicationPartsAssemblyInfo.cs
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.MvcApplicationPartsAssemblyInfo.cache
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/staticwebassets/msbuild.SpotifyLike.Api.Microsoft.AspNetCore.StaticWebAssets.props
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/staticwebassets/msbuild.build.SpotifyLike.Api.props
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.SpotifyLike.Api.props

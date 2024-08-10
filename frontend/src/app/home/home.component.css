@@ -1,0 +1,41 @@
+/* Importe os estilos do Angular Material */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* Estilo personalizado para a barra de ferramentas */
+.mat-toolbar {
+  background-color: #1976d2; /* Cor de fundo */
+  color: #fff; /* Cor do texto */
+}
+
+/* Estilo personalizado para o conteúdo */
+.content {
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Estilo personalizado para os cards */
+.mat-card {
+  background-color: #fff; /* Cor de fundo dos cards */
+  border-radius: 8px; /* Borda arredondada */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+  overflow: hidden; /* Evita que os cards cortem o conteúdo */
+  flex-grow: 1; /* Permitir que os cards cresçam para preencher o espaço */
+  max-width: calc(33.33% - 16px); /* Largura máxima com espaçamento */
+}
+
+/* Estilo personalizado para o botão "Ver Detalhes" dentro dos cards */
+.mat-card-action-buttons button {
+  background-color: #1976d2; /* Cor de fundo do botão */
+  color: #fff; /* Cor do texto */
+  border: none; /* Remova a borda */
+  border-radius: 4px; /* Borda arredondada */
+  padding: 8px 16px; /* Espaçamento interno */
+  cursor: pointer; /* Altera o cursor para indicar interatividade */
+  transition: background-color 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.mat-card-action-buttons button:hover {
+  background-color: #1565c0; /* Mudança de cor ao passar o mouse */
+}
