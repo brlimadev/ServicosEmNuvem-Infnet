@@ -1,0 +1,627 @@
+Aula 04 - Persistencia MVC
+
+03:00
+Criar interface no identityRepository pra conseguir gerar injeção de dependencia
+
+Clica com o direito na classe e em Acções rapidas e refatorações > Extrair Interfaces > escolher os métodos que ele vai criar
+
+E automaticamente ele cria
+
+using SpotifyLike.STS.Model;
+
+namespace SpotifyLike.STS.Data
+{
+    public interface IIdentityRepository
+    {
+        Task<Usuario> FindByEmailAndPasswordAsync(string email, string password);
+        Task<Usuario> FindByIdAsync(Guid id);
+    }
+}
+
+
+04:00
+Cadastrar interface no Program.cs
+
+builder.Services.AddScoped<IIdentityRepository, IdentityRepository>();
+
+04:30
+Configurar o IdentityServer
+
+
+builder.Services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+          
+
+
+AddDeveloperSigningCredential
+ é o certificado de seguranca que o identity vai gerar caso vc tenha o certificado vc coloca aqui
+
+
+
+nessa ordem
+
+app.UseIdentityServer();
+liguei o identityserver
+
+app.UseAuthentication();
+liguei a autenticação
+
+app.UseAuthorization();
+liguei a autorização
+
+
+precisa fazer algumas configurações quem é o cliente ? quem é a api? quais sao os escpos as permissoes? vamos fazer em memoria
+
+
+
+08:00
+Criar na raiz do STS um aqruivo chamado IdentityServerConfiguration.cs
+
+fazer as configuracoes que identity vai me voltar
+
+
+        public static IEnumerable<IdentityResource> GetIdentityResource()
+        {
+            return new List<IdentityResource>()
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile()
+            };
+        }
+
+
+Primeiro método pra ele me retornar quais sao os dados que tem dentro do meu token o que eu quero que ele volte é os dados de openId e o profile dele
+
+eu posso voltar o endereço o email o telefone o que esta embutido dentro do token
+
+
+10:00
+Mais um metodo que da acesso a nossa api o espoco de acesso a nossa api
+
+  public static IEnumerable<ApiResource> GetApiResource()
+        {
+            return new List<ApiResource>()
+            {
+                new ApiResource("spotifyLike-api", "SpotifyLike", new string[] { "spotifylike-user" })
+                {
+                    ApiSecrets =
+                    {
+                        new Secret("SpolitifyLikeSecret".Sha256())
+                    },
+                    Scopes =
+                    {
+                        "SpotifyLikeScope"
+                    }
+                }
+            };
+        }
+
+
+separa os acessos
+
+"spotifyLike-api",
+nome da api
+
+"SpotifyLike"
+nome que vai exibir
+
+new string[] { "spotifylike-user" })
+e as claims o escopo de acesso que ele vai ter
+
+
+pra utilizar a api preciso do segrredo dela eu criei uma
+ ApiSecrets =
+                    {
+                        new Secret("SpolitifyLikeSecret".Sha256())
+                    },
+
+
+qual escopo que vou permitir a utilizacao dessa barra de api
+Scopes =
+                    {
+                        "SpotifyLikeScope"
+                    }
+
+
+financeiro tem uma api, comercial tem outra pode dividir o setor que acessa qual api
+o usuario com uma senha nao pode acessar todas as apis
+isso limita pra cada usuario ter uma chave de acesso
+
+
+Estamos fazendo a area do servidor e vamos fazer depois do cliente
+
+14:00
+Ultima do servidor
+
+public static IEnumerable<ApiScope> GetApiScopes()
+        {
+            return new List<ApiScope>()
+            {
+                new ApiScope()
+                {
+                    Name = "SpotifyLikeScope", 
+                    DisplayName = "SpotifyLike API",
+                    UserClaims = { "spotifylike-user" }
+                }
+            };
+        }
+
+
+Pegar o escopo que a api vai utilizar
+é uma lista pq pode ter variar apis de varias equipes
+nome display e a claim que ele vai usar pra acessar
+
+
+Fechamos o lado servidor agora vamos ao lado do cliente
+
+18:00
+para o meu front end ter acesso as apis
+o Client que vai ter acesso a nossas apis
+
+ public static IEnumerable<Client> GetClients()
+        {
+            return new List<Client>()
+            {
+                new Client()
+                {
+                    ClientId = "client-angular-spotify",
+                    ClientName = "Acesso do front as APIS",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
+                    ClientSecrets =
+                    {
+                        new Secret("SpotifyLikeSecret".Sha256())
+                    },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "SpotifyLikeScope"
+                    }
+                }
+            };
+        }
+
+
+Cada cliente é um usuario ele tem a chave de acesso dele
+
+usuario de acesso da autenticação
+                    ClientId = "client-angular-spotify",
+
+Nome do cliente que vai aparecer 
+                    ClientName = "Acesso do front as APIS",
+
+o escopo que a gente vai passar
+                    AllowedGrantTypes = GrantTypes.
+
+22:40
+pra eu gerar o token vai passar o client id, o secret, o usuario e a senha se nao assar isso nao gera o token
+                ResourceOwnerPasswordAndClientCredentials,
+
+Gerar o clientSecret onde a string vai ser encriptada geralmente essa string e alimentada via método pra ser randomica
+                    ClientSecrets =
+                    {
+                        new Secret("SpotifyLikeSecret".Sha256())
+                    },
+
+Dar os acessos aonde ele tem escopo de acesso
+                    AllowedScopes =
+                    {
+
+o que ele vai ter acesso
+                        IdentityServerConstants.StandardScopes.OpenId,
+id issues
+                        IdentityServerConstants.StandardScopes.Profile,
+nome email 
+                        "SpotifyLikeScope"
+e o seu escopo
+                    }
+
+
+25:00
+Volta no program.cs e coloca cada configuração
+
+
+
+Todos os métodos que foram declarados
+
+                .AddInMemoryIdentityResources(IdentityServerConfiguration.GetIdentityResource())
+
+                .AddInMemoryApiResources(IdentityServerConfiguration.GetApiResource())
+
+                .AddInMemoryApiScopes(IdentityServerConfiguration.GetApiScopes())
+
+                .AddInMemoryClients(IdentityServerConfiguration.GetClients())
+
+Configurei para tenho minha api com um escopo para quem pode acessar ela e quem pode ver e customizar como ele vai pegar o dado do usuario
+
+29:30
+Adicionar uma pasta GrantType Com um item chamado ResourceOwnerPasswordValidator onde eu vou na base
+de usuario fazer o select e verificar se usuario e senha estao corretos
+
+
+Implementar a interface
+ public Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+
+Injetar a parte que vai fazer o banco de dados pra buscar no banco
+
+        private readonly IIdentityRepository repository;
+
+        public ResourceOwnerPasswordValidator(IIdentityRepository repository)
+        {
+            this.repository = repository;
+        }
+
+quem é esse private readonly IIdentityRepository repository; é aquele que acabamos de criar que da um find do email e senha e do idasync esse:
+
+        namespace SpotifyLike.STS.Data
+        {
+            public interface IIdentityRepository
+            {
+                Task<Usuario> FindByEmailAndPasswordAsync(string email, string password);
+                Task<Usuario> FindByIdAsync(Guid id);
+            }
+        }
+
+
+e na validação eu vou fazer a query pra fazer a validação
+
+ public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
+        {
+determina a senha
+            var password = context.Password;
+o email
+            var email = context.UserName;
+joga dentro da variavel user a query que recebe os parametros email e pass e retorna um usuario
+
+            var user = await this.repository.FindByEmailAndPasswordAsync(email, password);
+achou algum se ele nao for null
+            if (user is not null)
+            {
+conseguiu validar o result sera um  GrantValidationResult que pede o id do usuario ser.Id.ToString(), e o metodo de autenticacaoOidcConstants.AuthenticationMethods.Password)
+                context.Result = new GrantValidationResult(user.Id.ToString(), OidcConstants.AuthenticationMethods.Password);
+            }
+
+        }
+
+
+Vai na base vai select se usuario diferente de nulo encontrei
+
+Só que na base ta criptografada ou seja tem que pegar o método e criptografrar o parametro da password la em cima
+
+public String HashSHA256(string plainText)
+        {
+            SHA256 criptoProvider = SHA256.Create();
+
+            byte[] btexto = Encoding.UTF8.GetBytes(plainText);
+
+            var criptoResult = criptoProvider.ComputeHash(btexto);
+
+            return Convert.ToHexString(criptoResult);
+        }
+
+
+35:00
+Terminei de fazer a parte de autenticacao
+
+
+36:00
+Preciso gerar o dado do token o que volta no token o perfil dele criar mais um metodo pra fazer isso
+primeira etapa fizemos autenticar agora a segunda etapa é pegar o dado do cliente
+
+Pasta ProfileService e dentro dele a classe ProfileService
+
+preciso pegar o repositorio pra consultar quem e o usuario
+
+private readonly IIdentityRepository repository;
+
+        public ProfileService(IIdentityRepository repository)
+        {
+            this.repository = repository;
+        }
+
+
+
+
+Primeiro pegar o dado do usuario
+
+    public async Task GetProfileDataAsync(ProfileDataRequestContext context)
+        {
+o id ta dentro do subject o dono do token o id do meu usuario tem od id do usuario
+            var id = context.Subject.GetSubjectId();
+
+agora pelo id eu pego o usuario
+
+            var user = await this.repository.FindByIdAsync(new Guid(id));
+
+vou montar o token com as claims do usuario que vai ser comparado com a do servidor
+
+            var claims = new List<Claim>()
+            {
+issue o emissor
+                new Claim("iss", "Spotifylike.STS"),
+nome do usuario
+                new Claim("name", user.Nome),
+email
+                new Claim("email", user.Email),
+role que é a autorização se ele nao tiver no determinado perfil ele nao pode usar as apis
+
+                new Claim("role", "spotifylike-user")
+
+            };
+pegar o usuario e gerar o token ela vao ter essas propriedades com essas claims publicas
+
+            context.IssuedClaims = claims;
+retorna as claims
+        }
+
+
+
+Depois verificar se o usuario ta ativo nesse caso todos estao ativos mas a interface do IProfileService pede
+
+     public Task IsActiveAsync(IsActiveContext context)
+        {
+            context.IsActive = true;
+            return Task.CompletedTask;
+        }
+
+
+43:00
+volta no program e acrescenta
+
+       .AddProfileService<ProfileService>()
+
+Adidionar o profile service que acabamos de criar e
+
+                .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>();
+
+Adicionar o ResourceOwnerPasswordValidator que esta dentro da pasta grandtype
+
+
+
+Primeiro pipe ele valida
+segunda ele pega os dados
+
+Se estiver batendo no banco ok
+
+
+
+47:00
+Rodar o projeto e abrir o Postman
+
+Método POST rodando na porta https://localhost:7152/connect/token
+
+body x-www-form-urlencoded
+
+vou passar os dados que estao no IdentityServerConfiguration.cs
+
+                    ClientId = "client-angular-spotify",
+                    ClientName = "Acesso do front as APIS",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
+                    ClientSecrets =
+                    {
+                        new Secret("SpotifyLikeSecret".Sha256())
+                    },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "SpotifyLikeScope"
+                    }
+
+
+voce joga dessa forma
+
+
+Key             Value
+          
+client_Id       client-angular-spotify
+client_secret   SpotifyLikeSecret
+grant_type      password
+username        teste
+password        123456
+scope           SpotifyLikeScope
+
+
+Voce é obrigado a passar o client credentials pegar o token
+
+
+aqui vc valida o token se tiver diferente ele nem bate no breakpoint
+
+client_Id       client-angular-spotify
+client_secret   SpotifyLikeSecret
+grant_type      password
+
+
+scope           SpotifyLikeScope
+
+e depois pegar o token de novo pra validar o usuario
+
+aqui ele valida o usuario
+
+username        teste
+password        123456
+   
+
+
+
+58:00 criar esse usuario pela api
+Roda o projeto api
+dentro do swagger post/api/user
+
+joga o json
+
+{
+  "nome": "teste",
+  "email": "bruno@example.com",
+  "senha": "12345",
+  "dtNascimento": "2024-07-07T22:25:25.735Z",
+  "planoId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "cartao": {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "ativo": true,
+    "limite": 0,
+    "numero": "string"
+  }
+}
+
+que é o meu usuario cadastrado
+
+
+Explicando o debug
+
+  public async Task GetProfileDataAsync(ProfileDataRequestContext context)
+        {
+            var id = context.Subject.GetSubjectId();
+Pegou usuario
+            var user = await this.repository.FindByIdAsync(new Guid(id));
+
+montou o jwt
+
+            var claims = new List<Claim>()
+            {
+                new Claim("iss", "Spotifylike.STS"),
+                new Claim("name", user.Nome),
+                new Claim("email", user.Email),
+                new Claim("role", "spotifylike-user")
+            };
+
+            context.IssuedClaims = claims;
+        }
+
+
+01:01
+Com esse token agora vamos configurar os acessos a nossa API
+
+No projeto da API adicionar um pacote chamado IdentityServer4.AccessTokenValidation
+
+
+Instalou vai no program.cs e add
+
+
+builder.Services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+Endereço do meu servidor sts no caso a porta que roda
+                    options.Authority = "https://localhost:7152";
+nome que a gente configurou no identityserverconfiguration no metodo getapiresource()
+                    options.ApiName = "spotifyLike-api";
+nome que a gente configurou no identityserverconfiguration no metodo getapiresource()
+                    options.ApiSecret = "SpolitifyLikeSecret";
+sempre true pra https
+                    options.RequireHttpsMetadata = true;
+                });
+
+fechei a parte de authenticacao agora vamos pra autorizacao
+
+01:11
+
+builder.Services.AddAuthorization(options =>
+{
+aonde vai ter o addapolicy
+    options.AddPolicy(
+
+pela claim chamada role
+"spotifylike-role-user", p =>
+    {
+
+e só vai ter acesso esse cara aqui
+
+        p.RequireClaim("role", "spotifylike-user");
+    });
+});
+
+
+perfil diferente administrador e usuario
+
+
+
+feita autorizacao vo colocar o app.UseAuthentication();
+
+app.UseAuthorization();
+
+
+tem que ser nessa ordem se nao nao roda
+
+autentica depois autoriza
+
+01:14
+
+Agora vou nos controllers e coloco
+
+
+
+    [Authorize(Roles = "spotifylike-user")]
+
+vc pode passar varias roles colocando virgula dentro da aspas ficando assim
+
+
+    [Authorize(Roles = "spotifylike-user, spotifylike-userFinanceiro, spotifylike-userMarketing")]
+
+no UserController
+
+
+Ou seja a nao ser que vc coloque 
+        [AllowAnonymous]
+
+em cima do método vc nao consegue mais usar ela se nao passa um token
+
+
+01:16
+Agora eu quero subir o sts pra gerar o token e a api pq quero usar a api dois projetos
+
+vai na solução configure startup project single e multiple marca que vai subir os dois de uma vez que ele vai rodar as duas instancias de projeto
+
+em portugues direito na solução Definir projeto de iniciaalização e marca os dois clica em play
+
+
+Agora sempre que vc for dar um get ou um set no controller foi vai precisar colocar no header da requisição bearer "token" dessa forma
+
+Key                     Value
+authorization           bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkVBRjMzRTRCMUQ1NjRGQ0Y1NTBENTgwREYwMkYxRjhBIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE3MjAzOTQ4NzIsImV4cCI6MTcyMDM5ODQ3MiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE1MiIsImF1ZCI6InNwb3RpZnlMaWtlLWFwaSIsImNsaWVudF9pZCI6ImNsaWVudC1hbmd1bGFyLXNwb3RpZnkiLCJzdWIiOiIyNzlhMTU5My04YzMyLTQ1MDQtNDJlZC0wOGRjNTI2MWNhNjMiLCJhdXRoX3RpbWUiOjE3MjAzOTQ4NzIsImlkcCI6ImxvY2FsIiwibmFtZSI6IkJydW5vIiwiZW1haWwiOiJicnVub0BleGFtcGxlLmNvbSIsInJvbGUiOiJzcG90aWZ5bGlrZS11c2VyIiwianRpIjoiRTg2ODk2NzQwRjU3OUZCODA0QjZEQzRCMTcyQUQxNjMiLCJpYXQiOjE3MjAzOTQ4NzIsInNjb3BlIjpbIlNwb3RpZnlMaWtlU2NvcGUiXSwiYW1yIjpbInB3ZCJdfQ.czbLUNXzo4hSiqvrLvW5luUBHcmqCC4o_0OXCv7zQ5t-J0lWPhL5hUwPDfAU2P6y7tB8lKKTZ6YUoFsb-IJM6TeiWcBYSRqTiLusl-d7uaCiGcTYUZ5ZDjIjrXli4-PcXmM6saO9qCutKT30xYVJ9Xk-VnF6tKXardXnqWCQDcJJZd-xgDujkTXtxsBJD3ZNxNhbEsGLThUf0Tbfl0Ik
+                                ljbvIstCR77UBzSMvDVCpchYKlqG0kjEdTBZ-t8RbByu3OHqY_mam37TM3lYvgdeihUUQCSZpfWa6Cq4m40IJ1qTXELsjURiHVFOOVT95tP0jvuzykvRU7HyZxhRTPGCSA
+
+
+
+
+todos os endpoints
+
+https://localhost:7152/.well-known/openid-configuration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,269 @@
+Aula 01 - Persistencia MVC
+
+------------------------------------------------------------- 11:00
+Criando o Administrativo um MVC
+
+Direito novo projeto >>
+ASP NET CORE Web APP Model View Controller >>
+SpotifyLike.Admin
+
+
+------------------------------------------------------------- 18:00
+Configurar o appsettings.json do projeto Admin
+
+"AllowedHosts": "*",
+  "ConnectionStrings": {
+    "SpotifyConnection": "Data Source=localhost;Initial Catalog=SpotifyDatabase;MultiSubnetFailover=True;TrustServerCertificate=True; User ID = sa; Password=myPassw0rd"
+  }
+
+
+------------------------------------------------------------- 19:00
+Vão aparecer dois projetos de output ou seja projeto de inicializacao seleciona o admin
+
+
+------------------------------------------------------------- 23:00
+HomeController.cs
+o nome do método é o nome da view do html
+
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    public IActionResult Privacy()
+    {
+        return View();
+    }
+
+
+------------------------------------------------------------- 26:00
+Adicionar um novo controller
+
+Direito em cima da pasta controlller
+New Scafolding
+MVC Empty
+UserController
+
+
+------------------------------------------------------------- 29:00
+Criar uma pasta chamada User dentro das views
+Dentro dela vai ficar todo o html de criar usuario
+
+
+
+------------------------------------------------------------- 30:00
+Adicionar uma view
+
+Direito em cima da pasta views/user
+New Scafolding
+Pagina Razor
+Desmarcar tudo
+Digitar Index
+
+
+------------------------------------------------------------- 35:00
+Dentro do mvc tem uma pasta shared que é compartilhada por todos dentro dela tem o _viewsStart a primeira view que o template vai renderizar
+que só tem uma chama para _layout que é o caminho do arquivo que vai ter o html com os headers, body e onde vai estar os menus home privacy
+E dentro tem @renderbody onde ele vai renderizar o conteudo dela dentro desse pedaço ele vai ser substituido pelo conteudo que fizemos na view
+
+
+------------------------------------------------------------- 40:00
+Rotas ficam configuradas dentro de program.cs
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+onde nao houver o controller ele usa home/index e o id é opcional
+
+
+------------------------------------------------------------- 42:00
+Criado o menu do User
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">User</a>
+                        </li>
+
+
+
+------------------------------------------------------------- 48:00
+Criar dentro do Domain a pasta Admin e dentro dela a pasta Aggregates e dentro dela a classe UsuarioAdmin.cs
+
+
+
+
+------------------------------------------------------------- 50:00
+Criar os atributos da classe UsuarioAdmin.cs
+
+        public Guid Id { get; set; }
+		public String Nome { get; set; }
+		public String Email { get; set; }
+		public String Password { get; set; }
+
+------------------------------------------------------------- 51:00
+Criar dentro da pasta Aggregates a classe Perfil.cs do tipo Enumerator
+
+public enum Perfil
+	{
+		FULL = 1,
+		NORMAL = 2
+	}
+
+
+
+------------------------------------------------------------- 52:00
+Adicionar o atributo a classe UsuarioAdmin.cs
+
+		public Perfil Perfil { get; set; }
+
+
+------------------------------------------------------------- 53:00
+Terminando de modelar o dominio vamos no Projeto Repository na pasta Mappings Criar a pasta Admin
+
+Dentro da pasta admin criar a classe UsuarioAdminMapping.cs
+
+UsuarioAdminMapping vai herdar de IEntityTypeConfiguration
+
+55:00
+
+public class UsuarioAdminMapping : IEntityTypeConfiguration<UsuarioAdmin>
+    {
+        public void Configure(EntityTypeBuilder<UsuarioAdmin> builder)
+        {
+            builder.ToTable(nameof(UsuarioAdmin));
+
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.Property(x => x.Nome).IsRequired();
+            builder.Property(x => x.Email).IsRequired();
+            builder.Property(x => x.Password).IsRequired();
+            builder.Property(x => x.Perfil).IsRequired();
+
+        }
+    }
+
+
+56:00
+Criar o UsuarioAdminRepository.cs
+
+namespace SpotifyLike.Repository.Repository
+{
+	public class UsuarioAdminRepository : RepositoryBase<UsuarioAdmin>
+    {
+		public UsuarioAdminRepository(SpotifyLikeContext context) : base(context)
+        {
+        }
+    }
+}
+
+57:00
+
+Vai no SpotfyLikeContext.cs e cria o dbSet de UsuarioAdmin
+
+
+        public DbSet<UsuarioAdmin> UsuarioAdmin { get; set; }
+
+Banco Configurado
+
+
+58:00 prepara pra rodar o migrations
+
+Copiar do Program.cs do Api para  Program.cs do admin
+
+builder.Services.AddDbContext<SpotifyLikeContext>(c =>
+{
+    c.UseLazyLoadingProxies()
+     .UseSqlServer(builder.Configuration.GetConnectionString("SpotifyConnection"));
+});
+
+
+01:03 Criar um context separado para admin SpotifyLikeAdminContext.cs
+
+E apagar tudo que é relativo a o que nao é o admin
+
+
+01:06 Mudar o appSettings
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "SpotifyConnectionAdmin": "Data Source=localhost;Initial Catalog=SpotifyAdminDatabase;MultiSubnetFailover=True;TrustServerCertificate=True; User ID = sa; Password=myPassw0rd"
+  }
+}
+
+
+01:07 Program.cs Dando erro pois nao tem os pacotes tudo Versao 7.0
+
+EntityFrameworkCoreSqlServer
+EntityFrameworkCore
+EntityFrameworkCoreDesign
+EntityFrameworkCoreProxie
+
+
+
+01:10 Adicionar as referencias de projetos que o admin precisa
+
+Application
+Domain
+Repository
+
+01:11 Mudar o nome da connectionString no Program.cs
+
+builder.Services.AddDbContext<SpotifyLikeAdminContext>(c =>
+{
+    c.UseLazyLoadingProxies()
+     .UseSqlServer(builder.Configuration.GetConnectionString("SpotifyConnectionAdmin"));
+});
+
+01:13 Criar uma nova Database SpotifyAdminDatabase
+
+01:14 Adicionar a Migration e criar a pasta separada para as migrations de admin
+
+dotnet ef migrations add NomeDaBaseInicial2     -c SpotifyLikeAdminContext -p /Users/brunolima/Projects/PersistenciaMVCInfnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj -s /Users/brunolima/Projects/PersistenciaMVCInfnet/SpotifyLike.Admin/SpotifyLike.Admin.csproj -o MigrationsAdmin
+
+01:33 Dentro do SpotifyAdminContext Editar a linha para 
+            modelBuilder.ApplyConfiguration(new UsuarioAdminMapping());
+para dentro da migration ele criar todas as colunas da tabela que esta no mapping
+
+Excluir a pasta da migration criada e rodar de novo
+
+01:34 Adicionar a Migration e criar a pasta separada para as migrations de admin
+
+dotnet ef migrations add NomeDaBaseInicial2     -c SpotifyLikeAdminContext -p /Users/brunolima/Projects/PersistenciaMVCInfnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj -s /Users/brunolima/Projects/PersistenciaMVCInfnet/SpotifyLike.Admin/SpotifyLike.Admin.csproj -o MigrationsAdmin
+
+01:35 Executar o migration
+
+dotnet ef database update    -c SpotifyLikeAdminContext -p /Users/brunolima/Projects/PersistenciaMVCInfnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj -s /Users/brunolima/Projects/PersistenciaMVCInfnet/SpotifyLike.Admin/SpotifyLike.Admin.csproj
+
+
+dotnet ef migrations add AlterTable -s /Users/brunolima/Projects/PersistenciaMVCInfnet/SpotifyLike.Admin/SpotifyLike.Admin.csproj -p /Users/brunolima/Projects/SpotifyLikeInfnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

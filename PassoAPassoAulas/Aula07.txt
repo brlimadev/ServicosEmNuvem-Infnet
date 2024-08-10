@@ -1,0 +1,1171 @@
+Aula 07
+
+------------------------------------------------------------- 18:11 
+Entrou no BandaMapping.cs alterou os tamanhos das colunas
+
+------------------------------------------------------------- 18:38
+Windows: 
+>> Clica com o direito em cima da solucao open folder in file explorer pra pegar o endere�o
+>> cmd
+>> cd C:\Users\brlim\source\repos\SpotifyLikeInfnet
+>> dotnet ef migrations add AlterTable -s C:\Users\brlim\source\repos\SpotifyLikeInfnet\SpotifyLike.Api\SpotifyLike.Api.csproj -p C:\Users\brlim\source\repos\SpotifyLikeInfnet\SpotifyLike.Repository\SpotifyLike.Repository.csproj     
+
+
+Mac:
+>> cmd
+>> cd /Users/brunolima/Projects/SpotifyLikeInfnet
+    >> dotnet ef migrations add AlterTable -s /Users/brunolima/Projects/SpotifyLikeInfnet/SpotifyLike.Api/SpotifyLike.Api.csproj -p /Users/brunolima/Projects/SpotifyLikeInfnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj
+
+
+------------------------------------------------------------- 19:25 
+Update database
+Windows:
+>> dotnet ef database update -s C:\Users\brlim\source\repos\SpotifyLikeInfnet\SpotifyLike.Api\SpotifyLike.Api.csproj -p C:\Users\brlim\source\repos\SpotifyLikeInfnet\SpotifyLike.Repository\SpotifyLike.Repository.csproj     
+
+Mac:
+>> dotnet ef database update -s /Users/brunolima/Projects/SpotifyLikeInfnet/SpotifyLike.Api/SpotifyLike.Api.csproj -p /Users/brunolima/Projects/SpotifyLikeInfnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj
+
+
+------------------------------------------------------------- 21:16
+Inserir o plano na mão.
+Direito em cima da tabela plano Show Table Data Inserir um plano pegar o guid pelo Swagger
+Copia um Guid qualquer pra inserir no id
+3fa85f64-5717-4562-b3fc-2c963f66afa6
+Preenche os dados do Plano:
+3fa85f64-5717-4562-b3fc-2c963f66afa6, Plano Basico, Plano com funcionalidades Basicas, 29,90
+    
+
+------------------------------------------------------------- 22:05
+Criar um usuario pelo swagger POST api/user
+
+    IMPORTANTE o id do plano aí embaixo tem que ser o mesmo que vc setou na hora de criar o plano ou seja 3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+        {
+          "nome": "Bruno",
+          "email": "bruno@example.com",
+          "senha": "12345",
+          "dtNascimento": "2024-03-25T22:53:43.264Z",
+          "planoId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "cartao": {
+            "ativo": true,
+            "limite": 5000,
+            "numero": "6546366626661"
+          }
+        }
+
+
+------------------------------------------------------------- 27:42 
+POST Post/Banda
+Criou Bandas
+IMPORTANTE: TEM QUE CRIAR UM E DEPOIS CRIAR OUTRO
+
+
+        {
+         "nome": "Taylor Swift",
+         "descricao": "Taylor Alison Swift é uma cantora, compositora, atriz, diretora e roteirista norte-americana",
+         "backdrop": "https://classic.exame.com/wp-content/uploads/2023/06/GettyImages-1258411683.jpg?quality=70&strip=info&w=1024"
+        }
+
+
+
+        {
+         "nome": "Avril Lavigne",
+         "descricao": "Avril Ramona Lavigne (Belleville, 27 de setembro de 1984) é uma cantora e compositora canadense",
+         "backdrop": "https://i.scdn.co/image/ab6761610000e5eb581efa688945cbb092df1726"
+        }
+
+
+------------------------------------------------------------- 32:31
+Criando os albums
+
+>> Pega o Id da banda em GET get/banda
+
+       [
+          {
+            "id": "c639f21b-1f97-4008-53a1-08dc5263eca2",
+            "nome": "Taylor Swift",
+            "descricao": "Taylor Alison Swift é uma cantora, compositora, atriz, diretora e roteirista norte-americana",
+            "backdrop": "https://classic.exame.com/wp-content/uploads/2023/06/GettyImages-1258411683.jpg?quality=70&strip=info&w=1024"
+          },
+          {
+            "id": "902c2e98-9826-4198-53a2-08dc5263eca2",
+            "nome": "Avril Lavigne",
+            "descricao": "Avril Ramona Lavigne (Belleville, 27 de setembro de 1984) é uma cantora e compositora canadense",
+            "backdrop": "https://i.scdn.co/image/ab6761610000e5eb581efa688945cbb092df1726"
+          },
+          {
+            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "nome": "linkin Park",
+            "descricao": "Banda americana",
+            "backdrop": "https://encurtador.com.br/ozBDV"
+          }
+        ]
+
+>> vai no POST do album api/banda/{id}/albums e insere esse id de banda
+
+>> Taylor Swift
+
+          {
+          "bandaId": "c639f21b-1f97-4008-53a1-08dc5263eca2",
+          "nome": "The Eras Tour",
+          "musicas": [
+            {
+              "nome": "Enchanted",
+              "duracao": 260
+            },
+            {
+              "nome": "KARMA",
+              "duracao": 290
+            }
+          ]
+        }
+
+>> Não Esquecer de jogar o id da banda la em cima na requisicao onde está Required
+
+>> Linkin Park
+
+        {
+          "bandaId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "nome": "Meteora",
+          "musicas": [
+            {
+              "nome": "Faint",
+              "duracao": 250
+            },
+            {
+              "nome": "Crawling",
+              "duracao": 210
+            }
+          ]
+        }
+
+
+>> Avril Lavigne
+
+        {
+          "bandaId": "902c2e98-9826-4198-53a2-08dc5263eca2",
+          "nome": "Let Go",
+          "musicas": [
+            {
+              "nome": "Complicated",
+              "duracao": 350
+            },
+            {
+              "nome": "Losing Grip",
+              "duracao": 310
+            }
+          ]
+        }
+
+------------------------------------------------------------- 39:40 - Pegar quem é a banda
+
+>> detail-banda.component.ts injetar pra pegar o identificador de quem é a banda
+
+        export class DetailBandaComponent {
+
+        idbanda='';
+    
+        constructor(private route: ActivatedRoute) {
+      
+        }
+}
+
+>> cria um campo idbanda
+ idbanda='';
+
+>> injetar a rota 
+    constructor(private route: ActivatedRoute) {
+      
+        }
+
+>> Pegar um evento de inicio OnInit que é uma interface que faz na hora que inicializa o componente pegar o id da banda pra quando o cara entrar na tela ja esta com o id do componente
+
+export class DetailBandaComponent implements OnInit {
+
+    idbanda='';
+
+    constructor(private route: ActivatedRoute) {
+
+    }
+
+    ngOnInit(): void {
+        throw new Error('Método nao implementado')
+    }
+}
+
+>> Como eu já quero entrar na tela com os dados da minha banda vamos pegar esses dados:
+Pegar o id da banda dentro desse método OnInit 
+
+ ngOnInit(): void {
+
+        this.idbanda = this.route.snapshot.params["id"];
+    }
+
+>> por que ["id"] ?
+>> por que dentro do arquivo app.route.ts vc determinou a rota/url com o parametro ["id"] aqui
+
+    {
+        path: 'detail/:id',
+        component: DetailBandaComponent
+    }
+
+>> vou dar um console só pra ver se consegui pegar ele mesmo
+
+  ngOnInit(): void {
+
+        this.idbanda = this.route.snapshot.params["id"];
+        console.log(this.idbanda);
+    }
+
+
+------------------------------------------------------------- 44:00
+como está o arquivo detail-banda.component.ts
+
+        import { Component, OnInit } from '@angular/core';
+        import { ActivatedRoute } from '@angular/router';
+
+        @Component({
+          selector: 'app-detail-banda',
+          standalone: true,
+          imports: [],
+          templateUrl: './detail-banda.component.html',
+          styleUrl: './detail-banda.component.css'
+        })
+        export class DetailBandaComponent implements OnInit {
+
+          idbanda='';
+
+          constructor(private route: ActivatedRoute) {
+          }
+
+          ngOnInit(): void {
+
+            this.idbanda = this.route.snapshot.params["id"];
+            console.log(this.idbanda);
+        }
+        }
+
+
+>> rodar clica no details vai no inspecionar e peda o id
+
+>> você pode pegar vários ids, ou seja varios parametros, é só acrescentar dentro da rota
+
+>> supondo que a url seja detail/idbanda/idalbum/idmusica
+>> basta você acrescntar dentro do app.route.ts
+ficaria assim:
+    {
+        path: 'detail/:idbanda/:idalbum/:idmusica',
+        component: DetailBandaComponent
+    }
+
+>> e como pegaria dentro do do detail-banda.component.ts
+
+ ngOnInit(): void {
+
+        this.idbanda = this.route.snapshot.params["idbanda"];        
+        this.idalbum = this.route.snapshot.params["idalbum"];        
+        this.idmusica = this.route.snapshot.params["idmusica"];
+
+        console.log(this.idbanda);
+    }
+
+>> como ja pegamos o id da banda, tira ou comenta o console.log
+
+------------------------------------------------------------- 45:50
+ Criar um método de pegar a banda pelo id no banda.service.ts
+
+>> Parecido com o método que pegou todas as bandas só que ao invés de voltar um array volta só 1 banda
+
+>> o retorno tbm é diferente por que a nossa url é assim
+https://localhost:7206/api/Banda/ff8a5fca-e5f0-4d27-bcd2-08dc4d1294f4
+
+>> como no outro a gente buscava todas as bandas não precisavamos dizer o id o return desse
+é a url com o id ficando assim:
+
+      public getBandaPorId(id: string) : Observable<Banda> {
+        return this.httpClient.get<Banda>(`${this.url}/${id}`);
+     }
+ 
+ >> o $ cifrão serve pra fazer interpolação e isso não é aspas é crase pra fazer interpolação
+
+
+ ------------------------------------------------------------- 49:33
+ Pegar a banda no
+
+detail-banda.component.ts
+
+        import { Component, OnInit } from '@angular/core';
+        import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+        import { Banda } from '../model/banda';
+        import { BandaService } from '../services/banda.service';
+
+        @Component({
+          selector: 'app-detail-banda',
+          standalone: true,
+          imports: [],
+          templateUrl: './detail-banda.component.html',
+          styleUrl: './detail-banda.component.css'
+        })
+
+
+        export class DetailBandaComponent implements OnInit {
+
+            idbanda='';
+            banda!:Banda;
+
+            constructor(private route: ActivatedRoute, private bandaService: BandaService) {
+
+            }
+
+            ngOnInit(): void {
+
+                this.idbanda = this.route.snapshot.params["id"];
+                this.bandaService.getBandaPorId(this.idbanda).subscribe(response =>{
+                  // debugger;
+                  this.banda = response;
+                  console.log(this.banda);
+          
+                }); 
+                // console.log(this.idbanda);
+            }
+        }
+
+
+------------------------------------------------------------- 51:35 -
+Acrescentar no html do details detail-banda.component.html
+{{banda}}
+só pra printar no html os dados, 
+ou usar o console.log dentro de details-banda.component.ts
+>> Se você quiser colocar um breakpoint na linha em que deseja debugar basta acrescentar o comando debugger
+ficando desta forma em details-banda.component.ts
+
+
+------------------------------------------------------------- 56:14
+Agora já tendo recebido o objeto é só montar a tela no html detail-banda.component.html
+
+    <span>Nome: {{banda.nome}}</span>
+    <br />
+    <span>Descrição: {{banda.descricao}}</span>
+    <img [src]="banda.backdrop">
+
+------------------------------------------------------------- 59:30
+Criar um get no back end para pegar todos os albuns de uma banca especifica
+dentro de
+
+Bandacontroller.cs
+
+            [HttpGet("{idBanda}/albums/{id}")]
+            public IActionResult ObterAlbumPorId(Guid idBanda, Guid id)
+            {
+                var result = this._bandaService.ObterAlbumPorId(idBanda, id);
+
+                if (result == null)
+                    return NotFound();
+
+                return Ok(result);
+
+            }
+
+            [HttpGet("{idBanda}/albums/")]
+            public IActionResult ObterAlbums(Guid idBanda)
+            {
+              var result = this._bandaService.ObterAlbum(idBanda);
+
+              if (result == null)
+                return NotFound();
+
+              return Ok(result);
+
+            }
+
+
+------------------------------------------------------------- 01:00
+Alterar o método do service
+
+BandaService.cs
+
+        public AlbumDto ObterAlbumPorId(Guid idBanda, Guid id)
+        {
+            var banda = this.BandaRepository.GetById(idBanda);
+
+            if (banda == null)
+            {
+                throw new Exception("Banda não encontrada");
+            }
+
+            var album = (from x in banda.Albums
+                         select x
+                         ).FirstOrDefault(x => x.Id == id);
+
+            var result = AlbumParaAlbumDto(album);
+            result.BandaId = banda.Id;
+
+            return result;
+
+        }
+
+        public List<AlbumDto> ObterAlbum(Guid idBanda)
+        {
+            var banda = this.BandaRepository.GetById(idBanda);
+
+            var result = new List<AlbumDto>();
+
+            if (banda == null)
+            {
+                throw new Exception("Banda não encontrada");
+            }
+
+            foreach (var item in banda.Albums) 
+            {
+                result.Add(AlbumParaAlbumDto(item));
+            }
+
+            return result;
+        }
+
+
+
+
+------------------------------------------------------------- 01:05 
+Criar o Model Album
+Direito em cima de model
+>> new file
+>> album.ts
+
+
+        export interface Album {
+        id?:String;
+        nome?:String;    
+        musicas?:Musica[];
+        }
+
+        export interface Musica {
+            id?:String;
+            nome?:String;
+            duracao?:String;
+        }
+
+
+
+------------------------------------------------------------- 01:07
+Banda.Service.ts
+
+        import { HttpClient } from '@angular/common/http';
+        import { Injectable } from '@angular/core';
+        import { Observable } from 'rxjs';
+        import { Banda } from '../model/banda';
+        import { Album } from '../model/album';
+
+        @Injectable({
+          providedIn: 'root',
+  
+        })
+        export class BandaService {
+
+          private url = "https://localhost:7206/api/Banda"
+
+          constructor(private httpClient: HttpClient) { }
+
+          public getBanda() : Observable<Banda[]> {
+             return this.httpClient.get<Banda[]>(this.url);
+          }
+
+          public getBandaPorId(id: string) : Observable<Banda> {
+            return this.httpClient.get<Banda>(`${this.url}/${id}`);
+         }
+
+          public getAlbunsBanda(id: string) : Observable<Album[]>{    
+            return this.httpClient.get<Album[]>(`${this.url}/${id}/albums`);
+          }
+
+        }
+
+
+------------------------------------------------------------- 01:10
+detail-banda.component.ts
+
+        import { Component, OnInit } from '@angular/core';
+        import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+        import { Banda } from '../model/banda';
+        import { BandaService } from '../services/banda.service';
+        import { Album } from '../model/album';
+
+        @Component({
+          selector: 'app-detail-banda',
+          standalone: true,
+          imports: [],
+          templateUrl: './detail-banda.component.html',
+          styleUrl: './detail-banda.component.css'
+        })
+
+
+        export class DetailBandaComponent implements OnInit {
+
+            idbanda='';
+            banda!:Banda;
+            albuns!:Album[];
+
+            constructor(private route: ActivatedRoute, private bandaService: BandaService) {
+
+            }
+
+            ngOnInit(): void {
+
+                this.idbanda = this.route.snapshot.params["id"];
+                this.bandaService.getBandaPorId(this.idbanda).subscribe(response =>{
+                  // debugger;
+                  this.banda = response;
+                  // console.log(this.banda);
+          
+                }); 
+        
+                this.bandaService.getAlbunsBanda(this.idbanda).subscribe(response => {
+                  this.albuns = response;
+                  console.log(this.albuns);
+                });
+            }
+        }
+
+------------------------------------------------------------- 01:12
+Angular Material pegar um componente pra exibir na tela
+https://material.angular.io/components/categories
+
+Selecionado o expansion
+https://material.angular.io/components/expansion/examples
+
+Basic Expansion Model
+Importar o modulo dentro de detail-banda.component.ts ficando dessa forma
+
+            import { Component, OnInit } from '@angular/core';
+            import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+            import { Banda } from '../model/banda';
+            import { BandaService } from '../services/banda.service';
+            import { Album } from '../model/album';
+            import {MatExpansionModule} from '@angular/material/expansion';
+            import { CommonModule } from '@angular/common';
+
+            @Component({
+              selector: 'app-detail-banda',
+              standalone: true,
+              imports: [MatExpansionModule, CommonModule],
+              templateUrl: './detail-banda.component.html',
+              styleUrl: './detail-banda.component.css'
+            })
+
+
+            export class DetailBandaComponent implements OnInit {
+
+                idbanda='';
+                banda!:Banda;
+                albuns!:Album[];
+
+                constructor(private route: ActivatedRoute, private bandaService: BandaService) {
+
+                }
+
+                ngOnInit(): void {
+
+                    this.idbanda = this.route.snapshot.params["id"];
+                    this.bandaService.getBandaPorId(this.idbanda).subscribe(response =>{
+                      // debugger;s
+                      this.banda = response;
+                      // console.log(this.banda);
+          
+                    }); 
+        
+                    this.bandaService.getAlbunsBanda(this.idbanda).subscribe(response => {
+                      this.albuns = response;
+                      console.log(this.albuns);
+                    });
+                }
+            }
+
+
+------------------------------------------------------------- 01:14
+Resolver o Erro do inspecionar f12 com o ngif
+ERROR TypeError: Cannot read properties of undefined (reading 'nome')
+
+detail-banda.component.html
+
+        <div *ngIf="banda != undefined">
+            <span>Nome: {{banda.nome}}</span>
+            <br />
+            <span>Descrição: {{banda.descricao}}</span>
+            <img [src]="banda.backdrop">
+        </div>
+
+
+
+Voltando para o expend acrescentar no mesmo arquivo
+
+detail-banda.component.html
+
+        <div *ngIf="banda != undefined">
+            <span>Nome: {{banda.nome}}</span>
+            <br />
+            <span>Descrição: {{banda.descricao}}</span>
+            <img [src]="banda.backdrop">
+        </div>
+
+
+        <mat-accordion >
+            <mat-expansion-panel hideToggle *ngFor="let album of albuns" >
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       Album: {{album.nome}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p *ngFor="let music of album.musicas">Musica: {{music.nome}}</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    
+------------------------------------------------------------- 01:26
+Adicionando mais um Album para listar dois albuns na tela
+
+>> Taylor Swift
+
+         {
+          "bandaId": "c639f21b-1f97-4008-53a1-08dc5263eca2",
+          "nome": "22",
+          "musicas": [
+            {
+              "nome": "Bad Blood",
+              "duracao": 260
+            },
+            {
+              "nome": "Love Story",
+              "duracao": 290
+            }
+          ]
+        }
+
+------------------------------------------------------------- PAUSA
+
+
+------------------------------------------------------------- 02:06
+Criar a tela de Login e Api de login
+Dentro do projeto api >> Controllers >> criar a pasta request >> new file >>
+
+LoginRequest.cs
+
+using System.ComponentModel.DataAnnotations;
+
+namespace SpotifyLike.Api.Controllers.Request
+{
+    public class LoginRequest
+    {
+
+        [Required(ErrorMessage = "Campo Email é obrigatório")]
+        public String Email { get; set; }
+
+        [Required(ErrorMessage = "Campo Senha é obrigatório")]
+        public String Senha { get; set; }
+    }
+}
+
+
+
+------------------------------------------------------------- 02:10
+UserController.cs
+
+        [HttpPost("login")] 
+        public IActionResult Login([FromBody] Request.LoginRequest login)
+        {
+            if (ModelState.IsValid == false)
+                return BadRequest();
+
+            var result = this._usuarioService.Autenticar(login.Email, login.Senha);
+
+            if (result == null)
+            {
+                return BadRequest(new
+                {
+                    Error = "email ou senha inválidos"
+                });
+            }
+
+            return Ok(result);
+
+        }
+
+
+
+
+------------------------------------------------------------- 02:11
+UsuarioService.cs
+
+
+      public UsuarioDto Autenticar(String email, String senha)
+        {
+            var usuario = this.UsuarioRepository.Find(x => x.Email == email && x.Senha == senha.HashSHA256()).FirstOrDefault();
+            var result = this.Mapper.Map<UsuarioDto>(usuario);
+            return result;
+        }
+
+Testar via swagger
+POST Login
+
+        {
+          "email": "bruno@example.com",
+          "senha": "123456"
+        }
+
+        {
+          "error": "email ou senha inválidos"
+        }
+
+
+
+        {
+          "email": "bruno@example.com",
+          "senha": "5994471ABB01112AFCC18159F6CC74B4F511B99806DA59B3CAF5A9C173CACFC5"
+        }
+
+        200 SUCESS
+        {
+          "id": "279a1593-8c32-4504-42ed-08dc5261ca63",
+          "nome": "Bruno",
+          "email": "bruno@example.com",
+          "senha": "xxxxxxxxx",
+          "dtNascimento": "2024-03-25T22:53:43.264",
+          "planoId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "cartao": null
+        }
+
+
+
+
+------------------------------------------------------------- 02:24
+
+Criar a pasta Extensions
+Domain > Core > Nova Pasta > Extensions > New File >
+
+CriptografarExtension.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SpotifyLike.Domain.Core.Extension
+{
+    public static class CriptografarExtension
+    {
+        public static String HashSHA256(this string plainText)
+        {
+            SHA256 criptoProvider = SHA256.Create();
+
+            byte[] btexto = Encoding.UTF8.GetBytes(plainText);
+
+            var criptoResult = criptoProvider.ComputeHash(btexto);
+
+            return Convert.ToHexString(criptoResult);
+        }
+
+    }
+}
+
+------------------------------------------------------------- 02:32
+
+Agora dentro do usuario.cs pode chamar a funcao
+
+     private String CriptografarSenha(string senhaAberta)
+        {
+            return senhaAberta.HashSHA256();
+        }
+------------------------------------------------------------- 02:33
+Agora se colocar a senha antes de criptografar ele vai validar
+
+Testar via swagger
+POST Login
+
+        {
+          "email": "bruno@example.com",
+          "senha": "123456"
+        }
+
+Como eu nao sei o que é essa senha descriptografada coloquei essa ai
+
+------------------------------------------------------------- 02:34
+Testar a obrigatoriedade dos campos
+
+        {
+          "email": "",
+          "senha": ""
+        }
+{
+  "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "traceId": "00-bde84b1f0b13856feda371aba70b1688-90efd2c1b1c1a11c-00",
+  "errors": {
+    "Email": [
+      "Campo Email é obrigatório"
+    ],
+    "Senha": [
+      "Campo Senha é obrigatório"
+    ]
+  }
+}
+
+
+------------------------------------------------------------- 02:41
+Fazer a Tela de login em Html
+
+>> Direito em cima de app >> abrir em terminal
+Digita
+ng generate component login
+
+
+------------------------------------------------------------- 02:44
+Primeira Rota era pra home agora vai para o login
+
+app.route.ts
+
+Estava assim:
+
+import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { DetailBandaComponent } from './detail-banda/detail-banda.component';
+
+export const routes: Routes = [
+    {
+        path: '',
+        component: HomeComponent
+    },
+    {
+        path: 'detail/:id',
+        component: DetailBandaComponent
+    }
+];
+
+
+Ficou Assim:
+
+import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { DetailBandaComponent } from './detail-banda/detail-banda.component';
+import { LoginComponent } from './login/login.component';
+
+export const routes: Routes = [
+    {
+        path: '',
+        component: LoginComponent
+    },
+    {
+        path: 'home',
+        component: HomeComponent
+    },
+    {
+        path: 'detail/:id',
+        component: DetailBandaComponent
+    }
+];
+
+
+Ou seja na ordem de baixo pra cima quando ele entrar ele vai bater na tela de login depois na home e depois na details
+
+
+
+
+------------------------------------------------------------- 02:46
+agora criar o form do login
+
+Angular Material pegar um componente pra o formulario de login
+https://material.angular.io/components/categories
+
+Escolhido
+https://material.angular.io/components/form-field/overview
+
+
+Form Field With Error Message
+
+Importar os componentes:
+
+login.component.ts
+
+        import {Component} from '@angular/core';
+        import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+        import {MatInputModule} from '@angular/material/input';
+        import {MatFormFieldModule} from '@angular/material/form-field';
+
+
+        @Component({
+          selector: 'app-login',
+          standalone: true,
+          imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
+          templateUrl: './login.component.html',
+          styleUrl: './login.component.css'
+        })
+        export class LoginComponent {
+
+          email = new FormControl('', [Validators.required, Validators.email]);
+
+          senha = new FormControl('', [Validators.required]);
+
+          errorMessage = '';
+
+        }
+
+
+login.component.html
+
+        <div class="example-container" style="margin-left: 15px;">
+            <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput
+                     placeholder="Informe a email..."
+                     [formControl]="email"
+                     required>
+              <mat-error *ngIf="email.invalid">Email inválido</mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+                <mat-label>Senha</mat-label>
+                <input matInput
+                       type="password"
+                       placeholder="Informe a senha..."
+                       [formControl]="senha"
+                       required>
+                <mat-error *ngIf="senha.invalid">Senha inválida</mat-error>        
+            </mat-form-field>
+            <br />
+
+        </div>
+
+
+
+
+------------------------------------------------------------- 02:56
+Botao na tela de html
+
+Angular Material pegar um componente pra o botão
+https://material.angular.io/components/categories
+s
+Escolhido
+https://material.angular.io/components/button/examples
+
+
+joga no final do login.component.html
+    <button mat-raised-button color="primary">Primary</button>
+
+
+Importa o component no login.component.ts
+
+import {MatButtonModule} from '@angular/material/button';
+
+
+------------------------------------------------------------- 03:00
+acrescentar o evento de click dentro do botão no .html
+
+
+    <button mat-raised-button color="primary" (click)="login();">Login</button>
+
+Ele nao vai reconhecer por que nao existe
+
+Criar o evento dentro do .ts
+
+public login() {
+    if (this.email.invalid || this.senha.invalid) {
+      return;
+    }
+
+  }
+
+
+------------------------------------------------------------- 03:02
+Agora vamos pegar os dados
+
+    public login() {
+    if (this.email.invalid || this.senha.invalid) {
+      return;
+    }
+
+    let emailValue = this.email.getRawValue() as String;
+    let senhaValue = this.senha.getRawValue() as String;
+
+
+
+  }
+
+
+------------------------------------------------------------- 03:04
+Agora vamos criar o servico
+>> botão direito na pasta service >> abrir em terminal
+
+ng generate service usuario
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Usuario } from '../model/usuario';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsuarioService {
+
+  private url = "https://localhost:7057/api/User"
+  
+  constructor(private http: HttpClient) { }
+
+  public autenticar(email:String, senha: String) : Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.url}/login`, {
+      email:email,
+      senha:senha
+    });
+  }
+
+}
+
+
+------------------------------------------------------------- 03:04
+Agora vamos criar um modelo de usuario
+
+Direito em model >> new File
+usuario.ts
+
+export interface Usuario {
+    id?:String;
+    nome?:String;
+    email?:String;
+    dtNascimento?:String;
+}
+
+
+
+------------------------------------------------------------- 03:08
+
+Criar a funçao de autenticar
+
+usuario.service.ts
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Usuario } from '../model/usuario';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsuarioService {
+
+  private url = "https://localhost:7206/api/User"
+  
+  constructor(private http: HttpClient) { }
+
+  public autenticar(email:String, senha: String) : Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.url}/login`, {
+      email:email,
+      senha:senha
+    });
+  }
+
+}
+
+
+------------------------------------------------------------- 03:10
+
+Criar a função de autenticar dentro de
+
+login.component.ts
+
+import { Component } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { UsuarioService } from '../services/usuario.service';
+import { Usuario } from '../model/usuario';
+import { Router } from '@angular/router';
+
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, CommonModule, MatButtonModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
+})
+export class LoginComponent {
+  email = new FormControl('', [Validators.required, Validators.email]);
+  senha = new FormControl('', [Validators.required]);
+  errorMessage = '';
+  usuario!: Usuario;
+
+  constructor(private usuarioService: UsuarioService, private router: Router) {
+
+  }
+
+  public login() {
+    if (this.email.invalid || this.senha.invalid) {
+      return;
+    }
+
+    let emailValue = this.email.getRawValue() as String;
+    let senhaValue = this.senha.getRawValue() as String;
+
+    this.usuarioService.autenticar(emailValue, senhaValue).subscribe(
+      {
+        next: (response) => {
+          this.usuario = response;
+          sessionStorage.setItem("user", JSON.stringify(this.usuario));
+          this.router.navigate(["/home"]);
+        },
+        error: (e) => {
+          if (e.error) {
+            this.errorMessage = e.error.error;
+          }
+        }
+      });
+
+
+  }
+
+
+}
+
+
+------------------------------------------------------------- 03:20
+Usar o Session Storage pra pegar o cara logado
+
+sessionStorage.setItem("user", JSON.stringify(this.usuario));
+
+
+vamos direcionar depois que ele logar
+
+, private router: Router)
+
+          this.router.navigate(["/home"]);
+
+
+Logou com sucesso e ficou guardado no storage
+senha 12345
+
+Para ver:
+
+f12(inspecionar) >> Application >> Session Storage >> localhost:
+
+e tá la 
+
+{
+    "id": "279a1593-8c32-4504-42ed-08dc5261ca63",
+    "nome": "Bruno",
+    "email": "bruno@example.com",
+    "senha": "xxxxxxxxx",
+    "dtNascimento": "2024-03-25T22:53:43.264",
+    "planoId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "cartao": null
+}
+
+Se você fechar a janela perde a sessao e ele some de la
+
+
+
+
+

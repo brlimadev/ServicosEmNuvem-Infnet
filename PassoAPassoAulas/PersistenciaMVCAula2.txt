@@ -1,0 +1,237 @@
+Aula 02 - Persistencia MVC
+
+04:00 Dentro do Application criar a pasta Admin e dentro dela o UsuarioAdminService.cs e as pastas DTO e Profile
+
+
+namespace Spotify.Application.Admin.Dto
+{
+    public class UsuarioAdminDto
+    {
+        public Guid Id { get; set; }
+        public String Nome { get; set; }
+        public String Email { get; set; }
+        public String Password { get; set; }
+        public int Perfil { get; set; }
+    }
+}
+
+
+
+namespace Spotify.Application.Admin.Profile
+{
+    public class UsuarioAdminProfile : AutoMapper.Profile
+    {
+        public UsuarioAdminProfile()
+        {
+            CreateMap<UsuarioAdminDto, UsuarioAdmin>()
+                .ForMember(x => x.Perfil, m => m.MapFrom(f => (Perfil)f.Perfil))
+                .ReverseMap();
+
+        }
+
+    }
+}
+
+
+namespace Spotify.Application.Admin
+{
+    public class UsuarioAdminService
+    {
+        private UsuarioAdminRepository Repository { get; set; }
+        private IMapper mapper { get; set; }
+        public UsuarioAdminService(UsuarioAdminRepository repository, IMapper mapper)
+        {
+            Repository = repository;
+            this.mapper = mapper;
+        }
+
+        public IEnumerable<UsuarioAdminDto> ObterTodos()
+        {
+            var result = this.Repository.GetAll();
+            return this.mapper.Map<IEnumerable<UsuarioAdminDto>>(result);
+        }
+    }
+}
+
+12:00 Acrescentar o pacote do automapper mo projeto do admin
+
+
+13:00 Adicionar no program.cs o automapper
+
+
+builder.Services.AddAutoMapper(typeof(UsuarioAdminProfile).Assembly);
+
+builder.Services.AddScoped<UsuarioAdminRepository>();
+builder.Services.AddScoped<UsuarioAdminService>();
+
+
+
+24:00
+
+Trocar no meu repositorio base mais especialista vou substituir o nome pelo tipo dentro do RepositoryBase.cs
+
+Antes
+        protected SpotifyLikeContext Context { get; set; }
+Depois
+        protected DbContext Context { get; set; }
+
+Antes
+        public RepositoryBase(SpotifyLikeContext context)
+Depois
+        public RepositoryBase(DbContext context)
+
+
+Criar a tela de index no getbootstrap do google
+
+
+01:00
+Criar a tela de criação de usuário
+
+
+@model Spotify.Application.Admin.Dto.UsuarioAdminDto;
+
+
+<form method="post" asp-controller="User" asp-action="Salvar">
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Nome, new { @class = "form-control" })
+            <span class="form-field-invalid" asp-validation-for="Nome"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+            <span class="form-field-invalid" asp-validation-for="Email"></span>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+            <span class="form-field-invalid" asp-validation-for="Password"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Perfil</label>
+        <div class="col-sm-10">
+            <select class="form-select" asp-for="Perfil">
+                <option selected value="">Selecione</option>
+                <option value="1">Acesso Total</option>
+                <option value="2">Normal</option>
+            </select>
+            <span class="form-field-invalid" asp-validation-for="Perfil"></span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Criar</button>
+</form>
+
+
+
+01:01
+Acrescentar o link da url no botão da index
+
+    <a class="btn btn-primary" role="button" href="/User/Criar">Criar Usuário</a>
+
+
+01:17 Criar o metodo salvar dentro do usercontroller do projeto admin
+
+        [HttpPost]
+        public IActionResult Salvar(UsuarioAdminDto dto)
+        {
+            if (ModelState.IsValid == false)
+                return View("Criar");
+
+            this.usuarioAdminService.Salvar(dto);
+
+            return RedirectToAction("Index");
+        }
+
+
+
+01:19 Determinar qual metodo ele chama no submit do criar
+
+
+<form method="post" asp-controller="User" asp-action="Salvar">
+
+
+
+01:23 Validações
+
+[Required(ErrorMessage = "Campo Nome é obrigatório")]
+        public String Nome { get; set; }
+
+        [Required(ErrorMessage = "Campo Email é obrigatório")]
+        [EmailAddress(ErrorMessage = "Campo Email não está em um formato correto")]
+        public String Email { get; set; }
+
+        [Required(ErrorMessage = "Campo Password é obrigatório")]
+
+        public String Password { get; set; }
+
+        [Required(ErrorMessage = "Campo Perfil é obrigatório")]
+        public int? Perfil { get; set; }
+
+
+01:30
+
+UserController.cs
+
+if (ModelState.IsValid == false)
+                return View("Criar");
+
+
+01:32 Importar o Java script jquery-validation no layout pra poder aparecer a mensagem de erro na tela
+
+Dentro de SpotifyLike.Admin/Views/Shared/_Layout.cshtml
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+01:38 - Agora criar um css dentro de SpotifyLike.Admin/wwwroot/css/site.css uma classe para o form-field-invalid
+
+.form-field-invalid {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 5px;
+    margin-top: 5px
+}
+
+01:44 Criar o método de salvar dentro de Spotify.Application/Admin/UsuarioAdminService.cs
+
+
+        public void Salvar(UsuarioAdminDto dto)
+        {
+            var usuario = this.mapper.Map<UsuarioAdmin>(dto);
+            usuario.CriptografarSenha();
+            this.Repository.Save(usuario);
+        }
+
+
+01:46
+E dentro do SpotifyLike.Admin/Controllers/UserController.cs
+
+        [HttpPost]
+        public IActionResult Salvar(UsuarioAdminDto dto)
+        {
+            if (ModelState.IsValid == false)
+                return View("Criar");
+
+            this.usuarioAdminService.Salvar(dto);
+
+            return RedirectToAction("Index");
+        }
+
+01:52 criar o método de criptografar senha dentro de SpotifyLike.Domain/Admin/Aggregates/UsuarioAdmin.cs
+
+
+ public void CriptografarSenha()
+        {
+            this.Password = this.Password.HashSHA256();
+        }

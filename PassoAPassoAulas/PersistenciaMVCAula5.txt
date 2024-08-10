@@ -1,0 +1,68 @@
+Aula 05 - Persistencia MVCs
+
+14:00
+Criar um usuario pela interface administrativa
+
+
+15:00
+Criar no projeto admin um controller chamado AccountController.cs
+
+01:30
+
+abrir o front via cmd
+cd /Users/brunolima/Projects/SpotifyLikeInfnet/frontend
+
+e digita depois
+code .
+
+01:38
+Terminal
+npm install
+
+01:39
+Executa o STS pra gerar o token
+
+
+01:40
+
+
+02:00
+Dentro do package.json digitar 
+    "jwt-decode": "4.0.0"
+
+e no terminal rodar o npm install
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

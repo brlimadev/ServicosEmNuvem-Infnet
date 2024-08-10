@@ -1,0 +1,193 @@
+Aula 03 - Persistencia MVC
+
+01:29
+Criar um projeto Asp Core Web API chamado SpotifyLike.STS
+STS Significa Security Token Service
+
+01:32
+Configurar os pacotes
+
+Identity Server 4
+Microsoft.AspNetCore.Authentication.OpenIdConnect
+Microsoft.AspNetCore.Authentication.JWTBearer
+Dapper (substitui o ef por ser mais rapido)
+System.Data.SqlClient
+
+01:37
+Configurar o banco de dados
+Como eu preciso usar a informação do usuario que acessa a informação
+sera usado a tabela que esta no Api e nao do admin entao o appsettings sera o mesmo do api ou seja:
+
+            // WINDOWS
+
+            //{
+            //  "Logging": {
+            //    "LogLevel": {
+            //      "Default": "Information",
+            //      "Microsoft.AspNetCore": "Warning"
+            //    }
+            //  },
+            //  "AllowedHosts": "*",
+            //  "ConnectionStrings": {
+            //    "SpotifyConnection": "Data Source=(LocalDB)\\MSSQLLocalDB; Integrated Security=True; Initial Catalog=SpotifyDatabase"
+            //  }
+            //}
+
+            // MAC
+
+            {
+              "Logging": {
+                "LogLevel": {
+                  "Default": "Information",
+                  "Microsoft.AspNetCore": "Warning"
+                }
+              },
+              "AllowedHosts": "*",
+              "ConnectionStrings": {
+                "SpotifyConnection": "Data Source=localhost;Initial Catalog=SpotifyDatabase;MultiSubnetFailover=True;TrustServerCertificate=True; User ID = sa; Password=myPassw0rd"
+              }
+            } 
+
+
+
+01:38
+Criar dentro do projeto STS uma pasta Data
+
+01:39 dentro dessa pasta criar uma classe chamada DatabaseOption
+Dentro dessa classe criar o atributo pra pegar a conexao que esta la no appsettings
+
+public string DefaultConnectionString { get; set; }
+
+
+01:49
+Dentro do program.cs vou injetar o valor da minha conexao pra essa classe
+
+
+
+builder.Services.Configure<DatabaseOption>(builder.Configuration.GetSection("ConnectionStrings"));
+
+quem ? eu quero configurar Databaseoption
+
+como? pegando o nome da minha conexao pela connection string
+
+a minha propriedade connectionstring ja vai ter o nome da sessao
+
+pra que ele consiga fazer isso tem que ser a mesma estrutura
+"SpotifyConnection": "Data Source=localhost;Initial Catalog=SpotifyDatabase;MultiSubnetFailover=True;TrustServerCertificate=True; User ID = sa; Password=myPassw0rd"
+
+
+ou seja vou trocar o meu DataBaseOption por SpotifyConnection o mesmo nome
+
+
+		public string SpotifyConnection { get; set; }
+
+
+Cada propriedade o asp net vai preencher com esse valor pegar a sessao e tranformar ele em objeto pra nao precisar pegar o configuration toda hora
+
+
+01:43
+Criar o repositório onde vai fazer as consultas
+IdentityRepository.cs
+
+criado o atributo
+
+    private readonly string connectionString;
+
+
+criado o construtor
+
+public IdentityRepository(IOptions<DatabaseOption> options)
+		{
+			this.connectionString = options.Value.SpotifyConnection;
+		}
+
+o dotnet vai criar o option pois foi consfigurado no program.cs quando chamar vc vai na sessao pegar 
+
+01:49
+Criar o modelo de Model e dentro da pasta vou precisar das informações que vao trafegar no meu token Id nome e Email
+
+
+Criar classe Usuario.cs
+
+Nao pode trafegar dados sensiveis
+
+namespace SpotifyLike.STS.Model
+{
+	public class Usuario
+	{
+		public Guid Id { get; set; }
+		public string Nome { get; set; }
+		public string Email { get; set; }
+
+	}
+}
+
+
+01:51
+Criar uma classe nova com os métodos dentro de IdentityRepository.cs
+
+   public static class IdentityQuery
+    {
+        public static string FindById() =>
+            @"SELECT Id, Nome, Email
+                   FROM USUARIO
+                   WHERE Id = @id; 
+             ";
+
+        public static string FindByEmailAndPassword() =>
+            @"SELECT Id, Nome, Email
+                   FROM USUARIO
+                   WHERE Email = @email
+                   AND Senha = @senha
+             ";
+    }
+
+
+Uma nova classe dentro de uma classe com metodo para pegar o usuario pelo id e outra pra pegar pelo email e senha
+
+01:54
+Criar os métodos agora dentro da classe IdentityRepository que vai chamar os métodos da IdentityQuery
+
+
+public async Task<Usuario> FindByIdAsync(Guid id)
+        {
+            using(var connection = new SqlConnection(this.connectionString))
+            {
+                var user = await connection.QueryFirstAsync<Usuario>(IdentityQuery.FindById(), new
+                {
+                    id = id
+                });
+
+                return user;
+            }
+
+        }
+
+        public async Task<Usuario> FindByEmailAndPasswordAsync(string email, string password)
+        {
+            using (var connection = new SqlConnection(this.connectionString))
+            {
+                var user = await connection.QueryFirstAsync<Usuario>(IdentityQuery.FindByEmailAndPassword(), new
+                {
+                    email = email,
+                    senha = password
+                });
+                return user;
+            }
+        }
+
+
+O Entity framework faria isso pra gente mas como estamos usando o dapper tem que ser feito na mao abrir conexao e tal
+Fazer a consulta usando o dapper
+nao precisa ef pra fazer só 2 querys
+
+
+
+
+
+
+
+
+
+
+
