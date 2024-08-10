@@ -1,0 +1,298 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/SpotifyLike.Api.csproj": {}
+  },
+  "projects": {
+    "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/Spotify.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/Spotify.Application.csproj",
+        "projectName": "Spotify.Application",
+        "projectPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/Spotify.Application.csproj",
+        "packagesPath": "/Users/brunolima/.nuget/packages/",
+        "outputPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/brunolima/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/SpotifyLike.Domain.csproj": {
+                "projectPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/SpotifyLike.Domain.csproj"
+              },
+              "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj": {
+                "projectPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.314/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/SpotifyLike.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/SpotifyLike.Api.csproj",
+        "projectName": "SpotifyLike.Api",
+        "projectPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/SpotifyLike.Api.csproj",
+        "packagesPath": "/Users/brunolima/.nuget/packages/",
+        "outputPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/brunolima/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/sdk/7.0.314/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/Spotify.Application.csproj": {
+                "projectPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/Spotify.Application.csproj"
+              },
+              "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj": {
+                "projectPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "IdentityServer4.AccessTokenValidation": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.314/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/SpotifyLike.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/SpotifyLike.Domain.csproj",
+        "projectName": "SpotifyLike.Domain",
+        "projectPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/SpotifyLike.Domain.csproj",
+        "packagesPath": "/Users/brunolima/.nuget/packages/",
+        "outputPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/brunolima/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.314/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj",
+        "projectName": "SpotifyLike.Repository",
+        "projectPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj",
+        "packagesPath": "/Users/brunolima/.nuget/packages/",
+        "outputPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/brunolima/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/SpotifyLike.Domain.csproj": {
+                "projectPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/SpotifyLike.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.314/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

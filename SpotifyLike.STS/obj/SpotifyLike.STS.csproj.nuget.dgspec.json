@@ -1,0 +1,91 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.STS/SpotifyLike.STS.csproj": {}
+  },
+  "projects": {
+    "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.STS/SpotifyLike.STS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.STS/SpotifyLike.STS.csproj",
+        "projectName": "SpotifyLike.STS",
+        "projectPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.STS/SpotifyLike.STS.csproj",
+        "packagesPath": "/Users/brunolima/.nuget/packages/",
+        "outputPath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.STS/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/brunolima/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/sdk/7.0.314/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.35, )"
+            },
+            "IdentityServer4": {
+              "target": "Package",
+              "version": "[4.1.2, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.314/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

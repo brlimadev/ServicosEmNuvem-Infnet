@@ -1,0 +1,17 @@
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/Spotify.Application.deps.json
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/Spotify.Application.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/Spotify.Application.pdb
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/SpotifyLike.Domain.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/SpotifyLike.Repository.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/SpotifyLike.Domain.pdb
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/SpotifyLike.Repository.pdb
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/Spotify.Application.csproj.AssemblyReference.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/Spotify.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/Spotify.Application.AssemblyInfoInputs.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/Spotify.Application.AssemblyInfo.cs
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/Spotify.Application.csproj.CoreCompileInputs.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/Spotify.Application.csproj.CopyComplete
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/Spotify.Application.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/refint/Spotify.Application.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/Spotify.Application.pdb
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/ref/Spotify.Application.dll

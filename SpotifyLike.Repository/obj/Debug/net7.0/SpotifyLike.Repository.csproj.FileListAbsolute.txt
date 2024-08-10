@@ -1,0 +1,15 @@
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/bin/Debug/net7.0/SpotifyLike.Repository.deps.json
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/bin/Debug/net7.0/SpotifyLike.Repository.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/bin/Debug/net7.0/SpotifyLike.Repository.pdb
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/bin/Debug/net7.0/SpotifyLike.Domain.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/bin/Debug/net7.0/SpotifyLike.Domain.pdb
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/SpotifyLike.Repository.csproj.AssemblyReference.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/SpotifyLike.Repository.GeneratedMSBuildEditorConfig.editorconfig
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/SpotifyLike.Repository.AssemblyInfoInputs.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/SpotifyLike.Repository.AssemblyInfo.cs
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/SpotifyLike.Repository.csproj.CoreCompileInputs.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/SpotifyLike.Repository.csproj.CopyComplete
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/SpotifyLike.Repository.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/refint/SpotifyLike.Repository.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/SpotifyLike.Repository.pdb
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/ref/SpotifyLike.Repository.dll

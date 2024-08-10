@@ -1,0 +1,12 @@
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/bin/Debug/net7.0/SpotifyLike.Domain.deps.json
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/bin/Debug/net7.0/SpotifyLike.Domain.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/bin/Debug/net7.0/SpotifyLike.Domain.pdb
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/obj/Debug/net7.0/SpotifyLike.Domain.csproj.AssemblyReference.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/obj/Debug/net7.0/SpotifyLike.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/obj/Debug/net7.0/SpotifyLike.Domain.AssemblyInfoInputs.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/obj/Debug/net7.0/SpotifyLike.Domain.AssemblyInfo.cs
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/obj/Debug/net7.0/SpotifyLike.Domain.csproj.CoreCompileInputs.cache
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/obj/Debug/net7.0/SpotifyLike.Domain.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/obj/Debug/net7.0/refint/SpotifyLike.Domain.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/obj/Debug/net7.0/SpotifyLike.Domain.pdb
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/obj/Debug/net7.0/ref/SpotifyLike.Domain.dll
