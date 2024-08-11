@@ -24,7 +24,7 @@ jobs:
       - name: dotnet publish
         env:
           DOTNET_ROOT: ${{ runner.temp }}/dotnet
-        run: dotnet publish ./SpotifyLike.Api -c Release -o "${{ runner.temp }}/aplicacao-servicosemnuvem-api"
+        run: dotnet publish ./SpotifyLike.Api -c Release -o "${{ runner.temp }}/spotifylike-api"
 
       - name: List files in artifact directory
         run: dir "${{ runner.temp }}/aplicacao-servicosemnuvem-api"
@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: "${{ runner.temp }}/aplicacao-servicosemnuvem-api"
+          path: "${{ runner.temp }}/spotifylike-api"
 
   deploy:
     runs-on: windows-latest
