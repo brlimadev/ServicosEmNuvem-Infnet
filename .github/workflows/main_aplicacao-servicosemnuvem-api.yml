@@ -61,4 +61,10 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D4667625A0B146EA9E523F26C0C122CF }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6C0B57D353CA407A83EE2B8EB6A5239E }}
 
-      - name: Deploy to Azure
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'aplicacao-servicosemnuvem-api'
+          slot-name: 'Production'
+          package: ${{ runner.temp }}/aplicacao-servicosemnuvem-api
