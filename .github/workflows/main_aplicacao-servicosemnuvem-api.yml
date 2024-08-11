@@ -51,7 +51,7 @@ jobs:
           name: .net-app
       
       - name: List files in downloaded artifact directory
-        run: dir "${{ runner.temp }}/aplicacao-servicosemnuvem-api" # Ajuste conforme necessário
+        run: dir "${{ runner.temp }}/spotifylike-api" # Ajuste conforme necessário
 
       - name: Login to Azure
         uses: azure/login@v2
