@@ -27,7 +27,7 @@ jobs:
         run: dotnet publish ./SpotifyLike.Api -c Release -o "${{ runner.temp }}/spotifylike-api"
 
       - name: List files in artifact directory
-        run: dir "${{ runner.temp }}/aplicacao-servicosemnuvem-api"
+        run: dir "${{ runner.temp }}/spotifylike-api"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
