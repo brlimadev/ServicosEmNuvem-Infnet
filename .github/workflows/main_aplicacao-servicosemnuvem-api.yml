@@ -24,6 +24,9 @@ jobs:
       - name: dotnet publish
         run: dotnet publish ./SpotifyLike.Api -c Release -o ${{ runner.temp }}/aplicacao-servicosemnuvem-api
 
+      - name: List all directories in _temp
+        run: ls -la /Users/runner/work/_temp
+
       - name: List files after publish
         run: ls -la ${{ runner.temp }}/aplicacao-servicosemnuvem-api
 
@@ -58,10 +61,4 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D4667625A0B146EA9E523F26C0C122CF }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6C0B57D353CA407A83EE2B8EB6A5239E }}
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'aplicacao-servicosemnuvem-api'
-          slot-name: 'Production'
-          package: ${{ runner.temp }}/aplicacao-servicosemnuvem-api
+      - name: Deploy to Azure
