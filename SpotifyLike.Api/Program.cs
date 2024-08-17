@@ -7,7 +7,6 @@ using Spotify.Application.Streaming;
 using SpotifyLike.Repository;
 using SpotifyLike.Repository.Repository;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
