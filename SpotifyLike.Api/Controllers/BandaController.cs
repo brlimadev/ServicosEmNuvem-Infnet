@@ -11,6 +11,7 @@ namespace SpotifyLike.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize(Roles = "spotifylike-user")]
+    
     public class BandaController : ControllerBase
     {
         private BandaService _bandaService;
