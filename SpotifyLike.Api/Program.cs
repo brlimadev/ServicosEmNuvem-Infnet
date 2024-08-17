@@ -7,6 +7,7 @@ using Spotify.Application.Streaming;
 using SpotifyLike.Repository;
 using SpotifyLike.Repository.Repository;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,7 +23,7 @@ builder.Services.AddSwaggerGen(c =>
         In = Microsoft.OpenApi.Models.ParameterLocation.Header,
         Name = "Authorization",
         Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
-        Description = "Adicione o token JWT para fazer as requisições na APIs",
+        Description = "Adicione o token JWT para fazer as requisiÃ§Ãµes na APIs",
         Scheme = "Bearer"
     });
 
