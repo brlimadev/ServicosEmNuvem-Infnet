@@ -1,0 +1,90 @@
+Configurando o Banco de Dados
+
+0006
+Create Resource
+Sql Server
+
+Nome da Base
+SpotifyDatabase
+
+Servidor: Pode ter N base de dados
+
+0008
+Criar um Server
+nome: spotifyserver
+location: West Us
+
+
+Meotod de autenticacao
+Sql Authentication
+Usuario spotify-user
+Password 123mudar*
+
+Tipo de Uso Development
+
+Elastic Pool no
+
+Adicionar mais banco se faltar
+
+!! NUNCA USAR ESSE !! POIS FICA MUITO MAIS CARO
+
+0011
+PARTE PRINCIPAL
+
+Computação e armazenamento
+
+Sempre Optar poe serveless ou sem Servidor que conta por segundo
+
+NUNCA PROVISIONADO que é baseado por hora
+
+O QUE È CARO È PROCESSAMENTO ESPAÇO é BARATO
+Alterar o appsettings com a connectionstring que aponte para o banco da Azure
+
+0022
+da o aplicar
+
+Segunda aba parte de conectividade 
+public endpoint 
+
+e regras de firewall
+
+Permitir que oe servicos do azure acesse esse servidor SIM
+Adicionar o ip do cliente ou seja o meu ao banco de dados SIM
+
+pra eu conseguir acessar o banco
+Se mudar tem que alterar
+
+Aditional Settings Vazio Backup ou Padrao
+
+Janela de manutencao quando a equipe pode entrar no servidor e pode causar indisponibilidade
+
+
+Criar a migration
+dotnet ef migrations add NomeDaBaseInicial2     -c SpotifyLikeContext -p /Users/brunolima/Projects/SpotifyLikeInfnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj -s /Users/brunolima/Projects/SpotifyLikeInfnet/SpotifyLike.Api/SpotifyLike.Api.csproj
+
+RODAR O UPDATE
+dotnet ef database update     -c SpotifyLikeContext -p /Users/brunolima/Projects/SpotifyLikeInfnet/SpotifyLike.Repository/SpotifyLike.Repository.csproj -s /Users/brunolima/Projects/SpotifyLikeInfnet/SpotifyLike.Api/SpotifyLike.Api.csproj
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
