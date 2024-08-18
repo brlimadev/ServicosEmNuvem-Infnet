@@ -18,7 +18,7 @@ location: West Us
 Meotod de autenticacao
 Sql Authentication
 Usuario spotify-user
-Password 123mudar*
+Password 
 
 Tipo de Uso Development
 
