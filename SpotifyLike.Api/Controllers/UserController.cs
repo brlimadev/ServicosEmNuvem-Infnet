@@ -10,7 +10,7 @@ namespace SpotifyLike.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "spotifylike-user")]
+    //[Authorize(Roles = "spotifylike-user")]
     public class UserController : ControllerBase
     {
         private UsuarioService _usuarioService;

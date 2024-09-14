@@ -81,10 +81,120 @@ Ele compilou, fez restore, build e publish
 
 Criou a imagem dentro do docker
 
+Dentro de um contexto o caminho de onde estou executando
+ 
+COPY ["SpotifyLike.STS/SpotifyLike.STS.csproj", "SpotifyLike.STS/"] aqui eu estou dizendo que preciso copiar
+para esta pasta entao no meu ponto tenho que entrar dentro dessa pasta mas ela nao existe
+entao no meu contexto tenho que entrar dentro desta pasta como se tivesse
+dando um cd dentro da pasta do STS e a partir dali ele vai jogar o codigo fonte dentro de uma pasta
+da imagem do docker
 
 
 
+criar a tag pra versionar a imagem que as vezes vc quer voltar sua imagem pra uma versao anterior
+só colocar o :local 
 
 
+docker build -t spotify-sts:local -f ./SpotifyLike.STS/Dockerfile .
 
 
+0124
+
+Executar a imagem
+docker run -t spotify-sts:local .
+
+0138
+Executar o docker no postman
+
+Estou expondo a porta do meu docker 80 a uma porta local 5051 pra rodar no postman
+é como se a aplicacao tivesse rodando sem eu precisar clicar em rodar no visualstudio
+ele ta rodando la nessa porta 5051
+
+A porta do container 80 esta linkada com a porta da maquina logal 5051
+
+docker run -d -p:5051:80 -t spotify-sts:local
+
+0143
+
+Mudar string de conexao do projeto sts pra uma base do azure
+
+basta copiar do .api e colar no appsettings.json do .sts
+
+ "SpotifyConnection": "Server=tcp:spotify-server-infnet2.database.windows.net,1433;Initial Catalog=SpotifyDatabase;Persist Security Info=False;User ID=spotifyuser;Password=123mudar*;MultipleActiveResultSets=False;TrustServerCertificate=False;Connection Timeout=30;"
+  
+
+Agora o meu sts apontando pra uma base do azure
+
+Fiz alteração do código preciso executar de novo uma docker build e o docker run
+
+uma nova versao v1 com alteração
+
+docker build -t spotify-sts:TestarVersionamentoDockerApontandoParaBancoProducaoUsandoPortaLocal5054 -f ./SpotifyLike.STS/Dockerfile .
+docker run -d -p:5053:80 -t spotify-sts:TestarVersionamentoDockerApontandoParaBancoProducaoUsandoPortaLocal5054
+
+Ou seja como vc colocou um banco que roda os usuarios agora ele tem uma nova versao com o
+appsettings alterado
+
+
+Criar o usuario     comenta no usercontroller do api //[Authorize(Roles = "spotifylike-user")]
+
+Precisa criar o plano na tabela
+
+
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "nome": "Bruno",
+  "email": "b@b.com",
+  "senha": "12345",
+  "dtNascimento": "2024-09-14T16:41:09.302Z",
+  "planoId": "ffe37cef-cae6-4df6-acd7-5801d11e0774",
+  "cartao": {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "ativo": true,
+    "limite": 1000,
+    "numero": "string"
+  }
+}
+
+0200
+
+Publicar no azure o Docker
+
+
+0206
+
+Criar o servico no azure
+
+Create Resource
+Container
+Container Registry
+Registry name
+infnetposcontainerregistryblima
+pricing basic
+
+Vai no settings acces key
+marca como admin user
+e ele vai te dar um password
+pra vc conseguir subir sua imagem com esse login e senha
+pra poder alterar
+
+
+0211
+Via Terminal
+
+docker login infnetposcontainerregistryblima.azurecr.io
+
+ele pede o usuario e a senha
+copia e cola do azure
+
+
+docker tag 9c09443d9d10 infnetposcontainerregistryblima.azurecr.io/spotify-sts:TestarVersionamentoDockerApontandoParaBancoProducaoUsandoPortaLocal5054
+
+
+so alterei a tag para o endereço que ta la
+agora pode subir
+
+docker push infnetposcontainerregistryblima.azurecr.io/spotify-sts:TestarVersionamentoDockerApontandoParaBancoProducaoUsandoPortaLocal5054
+
+
+Via Pipeline  Github Action
