@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  spotifylike.sts:
+    image: ${DOCKER_REGISTRY-}spotifylike
+    build:
+      context: .
+      dockerfile: SpotifyLike.STS/Dockerfile

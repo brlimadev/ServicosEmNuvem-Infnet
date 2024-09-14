@@ -1,2 +1,90 @@
 0058
 
+Dockenizar o projeto STS
+
+Botão Direito em cima do Projeto.STS >> ADD >> Docker Support
+
+Criou o arquivo de Docker
+
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+-- buscando repositorio o ms aspnet 7
+
+WORKDIR /app
+-- repositorio de trabalho /app
+
+EXPOSE 80
+-- Expos duas portas para internet
+
+EXPOSE 443 -- 
+
+-- Fazendo o build da aplicação
+
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+-- Criando uma pasta chamada src
+
+COPY ["SpotifyLike.STS/SpotifyLike.STS.csproj", "SpotifyLike.STS/"]
+-- Copiando tudo que é do STS que preciso pra executar
+
+RUN dotnet restore "SpotifyLike.STS/SpotifyLike.STS.csproj"
+-- Restaurando pacotes
+
+COPY . .
+-- Copiando tudo do restore
+
+WORKDIR "/src/SpotifyLike.STS"
+-- Entrando na pasta
+
+
+RUN dotnet build "SpotifyLike.STS.csproj" -c Release -o /app/build
+-- Executando o dotnet build
+
+FROM build AS publish
+-- Pegou o resultado do build e chamou em publish
+RUN dotnet publish "SpotifyLike.STS.csproj" -c Release -o /app/publish /p:UseAppHost=false
+-- rodando jogando na pasta publish que nao esta executando
+
+FROM base AS final
+--
+
+WORKDIR /app
+COPY --from=publish /app/publish .
+-- copia o resultado do publish jogando nessa pasta todos os arquivos
+ENTRYPOINT ["dotnet", "SpotifyLike.STS.dll"]
+-- ENTRYPOINT Comando de execução do docker
+
+0105
+
+Basciamente o que ele o docketfile ta fazendo
+
+Clica com direito em cima do projeto sts >> publicar >> publicar em uma pasta
+>> criando uma pasta qualquer >> e publicando o arquivo nesta pasta >> e executou o projeto
+
+
+
+0108
+
+Entrar na pasta da aplicação geral via terminal
+'
+cd Projects/ServicosEmNuvem-Infnet
+'
+
+Rodar no terminal esse comando
+'
+docker build -t spotify-sts -f ./SpotifyLike.STS/Dockerfile .
+'
+
+Ele compilou, fez restore, build e publish
+
+Criou a imagem dentro do docker
+
+
+
+
+
+
+
+
