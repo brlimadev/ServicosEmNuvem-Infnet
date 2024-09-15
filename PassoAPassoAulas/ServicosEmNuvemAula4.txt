@@ -1,0 +1,3 @@
+Aula 04 Basicamente Subir o docker via esteira do github
+
+Como nao quero mudar a forma de subir a aplicacao pra azuer preciso criar um outro repositorio pra colocar essas alterações
