@@ -198,3 +198,13 @@ docker push infnetposcontainerregistryblima.azurecr.io/spotify-sts:TestarVersion
 
 
 Via Pipeline  Github Action
+
+
+docker build -t spotify-sts:VersaoFuncionandoOBancoNoContainer -f ./SpotifyLike.STS/Dockerfile .
+docker run -p:8005:80 -t spotify-sts:VersaoFuncionandoOBancoNoContainer
+
+docker login infnetposcontainerregistryblima.azurecr.io
+
+docker tag spotify-sts:v3 infnetposcontainerregistryblima.azurecr.io/spotify-sts:v3
+
+docker push infnetposcontainerregistryblima.azurecr.io/spotify-sts:v3
