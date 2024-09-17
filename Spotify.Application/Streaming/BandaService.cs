@@ -22,29 +22,161 @@ namespace Spotify.Application.Streaming
             Mapper = mapper;
         }
 
-        public BandaDto Criar(BandaDto dto)
+        #region BancoSql
+
+        
+        //public BandaDto Criar(BandaDto dto)
+        //{
+        //    Banda banda = this.Mapper.Map<Banda>(dto);
+        //    this.BandaRepository.Save(banda);
+
+        //    return this.Mapper.Map<BandaDto>(banda);
+        //}
+
+        //public BandaDto Obter(Guid id)
+        //{
+        //    var banda = this.BandaRepository.GetById(id);
+        //    return this.Mapper.Map<BandaDto>(banda);
+        //}
+
+        //public IEnumerable<BandaDto> Obter()
+        //{
+        //    var banda = this.BandaRepository.GetAll();
+        //    return this.Mapper.Map<IEnumerable<BandaDto>>(banda);
+        //}
+
+        //public AlbumDto AssociarAlbum(AlbumDto dto)
+        //{
+        //    var banda = this.BandaRepository.GetById(dto.BandaId);
+
+        //    if (banda == null)
+        //    {
+        //        throw new Exception("Banda não encontrada");
+        //    }
+
+        //    var novoAlbum = this.AlbumDtoParaAlbum(dto);
+
+        //    banda.AdicionarAlbum(novoAlbum);
+
+        //    this.BandaRepository.Update(banda);
+
+        //    var result = this.AlbumParaAlbumDto(novoAlbum);
+
+        //    return result;
+
+        //}
+
+        //public AlbumDto ObterAlbumPorId(Guid idBanda, Guid id)
+        //{
+        //    var banda = this.BandaRepository.GetById(idBanda);
+
+        //    if (banda == null)
+        //    {
+        //        throw new Exception("Banda não encontrada");
+        //    }
+
+        //    var album = (from x in banda.Albums
+        //                 select x
+        //                 ).FirstOrDefault(x => x.Id == id);
+
+        //    var result = AlbumParaAlbumDto(album);
+        //    result.BandaId = banda.Id;
+
+        //    return result;
+
+        //}
+
+        //public List<AlbumDto> ObterAlbum(Guid idBanda)
+        //{
+        //    var banda = this.BandaRepository.GetById(idBanda);
+
+        //    if (banda == null)
+        //    {
+        //        throw new Exception("Banda não encontrada");
+        //    }
+
+        //    var result = new List<AlbumDto>();
+
+        //    foreach (var item in banda.Albums)
+        //    {
+        //        result.Add(AlbumParaAlbumDto(item));
+        //    }
+
+        //    return result;
+
+        //}
+
+        //private Album AlbumDtoParaAlbum(AlbumDto dto)
+        //{
+        //    Album album = new Album()
+        //    {
+        //        Nome = dto.Nome
+        //    };
+
+        //    foreach (MusicDto item in dto.Musicas)
+        //    {
+        //        album.AdicionarMusica(new Musica
+        //        {
+        //            Nome = item.Nome,
+        //            Duracao = new SpotifyLike.Domain.Streaming.ValueObject.Duracao(item.Duracao)
+        //        });
+        //    }
+
+        //    return album;
+        //}
+
+        //private AlbumDto AlbumParaAlbumDto(Album album)
+        //{
+        //    AlbumDto dto = new AlbumDto(); 
+        //    dto.Id = album.Id;
+        //    dto.Nome = album.Nome;
+
+        //    foreach (var item in album.Musica)
+        //    {
+        //        var musicaDto = new MusicDto()
+        //        {
+        //            Id = item.Id,
+        //            Duracao = item.Duracao.Valor,
+        //            Nome = item.Nome
+        //        };
+
+        //        dto.Musicas.Add(musicaDto);
+        //    }
+
+        //    return dto;
+        //}
+        #endregion
+
+        //CosmosDBß
+
+        public async Task<BandaDto> Criar(BandaDto dto)
         {
             Banda banda = this.Mapper.Map<Banda>(dto);
-            this.BandaRepository.Save(banda);
+
+            //var urlBackdrop = await this.AzureStorageAccount.UploadImage(dto.Backdrop);
+
+            banda.Backdrop = dto.Backdrop;
+
+            await this.BandaRepository.SaveOrUpate(banda, banda.BandaKey);
 
             return this.Mapper.Map<BandaDto>(banda);
         }
 
-        public BandaDto Obter(Guid id)
+        public async Task<BandaDto> Obter(Guid id)
         {
-            var banda = this.BandaRepository.GetById(id);
+            var banda = await this.BandaRepository.ReadItem<Banda>(id.ToString());
             return this.Mapper.Map<BandaDto>(banda);
         }
 
-        public IEnumerable<BandaDto> Obter()
+        public async Task<IEnumerable<BandaDto>> Obter()
         {
-            var banda = this.BandaRepository.GetAll();
+            var banda = await this.BandaRepository.ReadAllItem<Banda>();
             return this.Mapper.Map<IEnumerable<BandaDto>>(banda);
         }
 
-        public AlbumDto AssociarAlbum(AlbumDto dto)
+        public async Task<AlbumDto> AssociarAlbum(AlbumDto dto)
         {
-            var banda = this.BandaRepository.GetById(dto.BandaId);
+            var banda = await this.BandaRepository.ReadItem<Banda>(dto.BandaId.ToString());
 
             if (banda == null)
             {
@@ -55,7 +187,7 @@ namespace Spotify.Application.Streaming
 
             banda.AdicionarAlbum(novoAlbum);
 
-            this.BandaRepository.Update(banda);
+            await this.BandaRepository.SaveOrUpate<Banda>(banda, banda.BandaKey);
 
             var result = this.AlbumParaAlbumDto(novoAlbum);
 
@@ -63,9 +195,9 @@ namespace Spotify.Application.Streaming
 
         }
 
-        public AlbumDto ObterAlbumPorId(Guid idBanda, Guid id)
+        public async Task<AlbumDto> ObterAlbumPorId(Guid idBanda, Guid id)
         {
-            var banda = this.BandaRepository.GetById(idBanda);
+            var banda = await this.BandaRepository.ReadItem<Banda>(idBanda.ToString());
 
             if (banda == null)
             {
@@ -83,9 +215,9 @@ namespace Spotify.Application.Streaming
 
         }
 
-        public List<AlbumDto> ObterAlbum(Guid idBanda)
+        public async Task<List<AlbumDto>> ObterAlbum(Guid idBanda)
         {
-            var banda = this.BandaRepository.GetById(idBanda);
+            var banda = await this.BandaRepository.ReadItem<Banda>(idBanda.ToString());
 
             if (banda == null)
             {
@@ -107,6 +239,7 @@ namespace Spotify.Application.Streaming
         {
             Album album = new Album()
             {
+                Id = dto.Id,
                 Nome = dto.Nome
             };
 
@@ -114,6 +247,7 @@ namespace Spotify.Application.Streaming
             {
                 album.AdicionarMusica(new Musica
                 {
+                    Id = item.Id,
                     Nome = item.Nome,
                     Duracao = new SpotifyLike.Domain.Streaming.ValueObject.Duracao(item.Duracao)
                 });
@@ -124,7 +258,7 @@ namespace Spotify.Application.Streaming
 
         private AlbumDto AlbumParaAlbumDto(Album album)
         {
-            AlbumDto dto = new AlbumDto(); 
+            AlbumDto dto = new AlbumDto();
             dto.Id = album.Id;
             dto.Nome = album.Nome;
 
@@ -142,6 +276,8 @@ namespace Spotify.Application.Streaming
 
             return dto;
         }
+
+
 
 
 

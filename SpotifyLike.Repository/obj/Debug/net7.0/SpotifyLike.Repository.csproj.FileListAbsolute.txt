@@ -13,3 +13,8 @@
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/refint/SpotifyLike.Repository.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/SpotifyLike.Repository.pdb
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/obj/Debug/net7.0/ref/SpotifyLike.Repository.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/bin/Debug/net7.0/Microsoft.Azure.Cosmos.ServiceInterop.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/bin/Debug/net7.0/Cosmos.CRTCompat.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/bin/Debug/net7.0/msvcp140.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/bin/Debug/net7.0/vcruntime140.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Repository/bin/Debug/net7.0/vcruntime140_1.dll

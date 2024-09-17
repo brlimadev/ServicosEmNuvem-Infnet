@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "JP01TqHtfcK/FT8c5jMAh0gB83RymZvS+SduwfjIg7iuCyNGVHicIoWuIkm1Prc26ZbbY2RfjmIuKfGYA/PjMQ==",
+  "dgSpecHash": "vZTnze5hEkqwoluq587NBs6uoYWNsGjkqImCILYnYdYE1FV69xsoJl20ScvJd0mP5YfWaDehoN99IfJ/NZpy+w==",
   "success": true,
   "projectFilePath": "/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Domain/SpotifyLike.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/brunolima/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/brunolima/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
+    "/Users/brunolima/.nuget/packages/system.text.json/7.0.4/system.text.json.7.0.4.nupkg.sha512"
+  ],
   "logs": []
 }

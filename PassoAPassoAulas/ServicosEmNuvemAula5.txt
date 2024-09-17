@@ -1,0 +1,221 @@
+Aula 05 NO SQL e Cosmos DB
+
+0023 Explicando banco NoSQL (nocicle)
+
+
+
+0046
+Criar cosmodb
+
+Create Resource
+Datbases
+Azure Cosmo DB
+Qual Api NOSQL ou MongoDB
+Escolhe NoSQL
+
+Nome spotifylike-cosmodb
+
+Modo De capacidade OMAISIMPORTANTE
+
+Serveles sempre é mais barato
+
+NUNCA PROVISIONADO
+
+Desabilita georedundancia
+
+METODO DE CONECTIVIDADE
+
+Todos
+
+Backup
+
+
+0055
+
+Usar o emulador do CosmoDB
+
+0122
+Emulador nao deu certo voltamos para o azure
+
+go to resource
+
+Create container itens
+
+Clica em data Explorer
+
+Ele que é o seu banco de dados
+
+Criar uma nova base daddos
+nome spotifylike
+
+clica do lado em ... em new container
+DatabaseId Use existing
+ContainerId
+banda
+required chave primaria
+preenche com /partitionkey
+uma chave aonde o cosmo db pega o dado e
+agrupa em um serv mais proximo
+
+se tiver o mesmo partition os dados estao mais proximos
+
+Exemplo Estado e municipio
+
+tudo que tiver dentro do mesmo estado
+em um mesmo servidor
+ai a consulta fica mais lenta
+
+dentro de banda
+
+dentro de configuração keys
+
+Dentro do Projeto Repository Cria um CosmosDBContext
+
+Instala dentro do Repository o Microsoft.Azure.Cosmos
+
+altera o appsettings do api para conectar com o banco do cosmosdb do azure
+
+ },
+  "CosmosConnection": {
+    "AccountEndpoint": "https://spotifylike-cosmodb.documents.azure.com:443/",
+    "TokenCredential": "QzCN01N4dQxm4vievVnLjo44wiZfqfezlITzKaMqSepOs9JdzW5S1EZ2WB9XM11TQ83GaYAuGn8bACDbtTr8yw=="
+  }
+
+
+0203
+
+Alterar o banda repository
+
+
+02:04
+
+Ajustando o service para receber o banco NOSQL CosmoDB para
+
+
+Alterando os metodos do BandaController para
+
+ [HttpGet]
+        public async Task<IActionResult> GetBandas()
+        {
+            var result = await this._bandaService.Obter();
+
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBandas(Guid id)
+        {
+            var result = await this._bandaService.Obter(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Criar([FromBody] BandaDto dto)
+        {
+            if (ModelState is { IsValid: false })
+                return BadRequest();
+
+            var result = await this._bandaService.Criar(dto);
+
+            return Created($"/banda/{result.Id}", result);
+        }
+
+        [HttpPost("{id}/albums")]
+        public async Task<IActionResult> AssociarAlbum(AlbumDto dto)
+        {
+            if (ModelState is { IsValid: false })
+                return BadRequest();
+
+            var result = await this._bandaService.AssociarAlbum(dto);
+
+            return Created($"/banda/{result.BandaId}/albums/{result.Id}", result);
+
+        }
+
+
+        [HttpGet("{idBanda}/albums/{id}")]
+        public async Task<IActionResult> ObterAlbumPorId(Guid idBanda, Guid id) 
+        { 
+            var result = await this._bandaService.ObterAlbumPorId(idBanda, id);
+
+            if (result == null) 
+                return NotFound();
+
+            return Ok(result);
+            
+        }
+
+        [HttpGet("{idBanda}/albums")]
+        public async Task<IActionResult> ObterAlbuns(Guid idBanda)
+        {
+            var result = await this._bandaService.ObterAlbum(idBanda);
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+
+        }
+
+
+0216
+Alterou o banda.cs para
+
+ public class Banda
+    {
+
+        //[JsonProperty("id")]
+        public Guid Id { get; set; }
+
+        //[JsonProperty("nome")]
+        public String Nome { get; set; }
+
+        //[JsonProperty("descricao")]
+        public String Descricao { get; set; }
+
+        //[JsonProperty("backdrop")]
+        public String Backdrop { get; set; }
+
+        //[JsonProperty("bandaKey")]
+        public string BandaKey = "banda-partition";
+
+
+        //[JsonProperty("albuns")]
+        public virtual IList<Album> Albums { get; set; } = new List<Album>();
+
+        public void AdicionarAlbum(Album album) =>
+            this.Albums.Add(album);
+
+
+    }
+
+0218
+
+criou um registro la no banco CosmosDb do Azure
+
+
+0225
+acrescentando no banda.cs
+
+
+        [JsonPropertyName("id")]
+
+
+0232
+
+Instalar no .domain o system.text.json
+Instalar o Newtonsoft.json
+
+0238
+Deletou o container do banco cosmosDB e criou um novo com o
+Nome
+banda
+
+PartitionKey
+/bandaKey
