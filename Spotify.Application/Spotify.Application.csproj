@@ -15,4 +15,10 @@
     <ProjectReference Include="..\SpotifyLike.Repository\SpotifyLike.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Streaming\Storage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Streaming\Storage\" />
+  </ItemGroup>
 </Project>

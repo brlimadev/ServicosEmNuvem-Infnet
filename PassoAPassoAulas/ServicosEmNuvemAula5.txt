@@ -78,7 +78,7 @@ altera o appsettings do api para conectar com o banco do cosmosdb do azure
  },
   "CosmosConnection": {
     "AccountEndpoint": "https://spotifylike-cosmodb.documents.azure.com:443/",
-    "TokenCredential": "QzCN01N4dQxm4vievVnLjo44wiZfqfezlITzKaMqSepOs9JdzW5S1EZ2WB9XM11TQ83GaYAuGn8bACDbtTr8yw=="
+    "TokenCredential": "QzCN01NMqSepOs9JdzW5S1EZ2WB9XM11TQ83GaYAuGn8bACDbtTr8yw=="
   }
 
 
