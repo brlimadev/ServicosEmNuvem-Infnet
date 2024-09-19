@@ -1,1 +1,203 @@
 Incializando aula 07
+
+0043
+
+Criando API Management
+Create Resource
+Web
+API Management
+
+Resource name
+spotify-api
+organization infnet
+administrador
+
+pricing tier
+consumption
+só paga qnd é consumido e começa a pagar depois
+de 1milhao de requisições
+
+next
+
+Monitor
+deixa tudo desmarcado
+
+next
+virtual network
+deixa none
+
+next
+tag deixa como esta
+
+create
+
+criar demora 10minutos
+
+0104
+Publicar nossa api
+Aba APIS
+depois APIS
+Temos varias situações para criar apis nessa aba
+
+Vamos utilizar openAPI
+clica nele ele vai precisar do endereço dp swagger
+pegar o endereço do swagger rodando no azure e NAO local
+no caso esse
+https://spotify-infnet-api3.azurewebsites.net/swagger/v1/swagger.json
+no campo OpenAPI specification
+
+
+Display name
+Spotify Like Api
+
+Name
+spotify-like-api
+
+API URL Sufix
+spotify
+
+0107
+Ele vai aparecer da mesma forma como no swagger só que agora
+com o link  https://spotify-infnet-api3.azurewebsites.net/
+
+clica no metodo get
+depois na aba test
+e send
+
+copia o request url
+https://spotify-gerenciamento-api.azure-api.net/spotify/api/Banda
+
+
+abre o postman
+cola
+https://spotify-gerenciamento-api.azure-api.net/spotify/api/Banda
+
+ele da 401
+o api colocou uma segurança ali
+eu preciso de uma subscription
+
+cria uma nova subscrição api> subscription
+
+Name spotify-key
+habilita o trace
+
+escopo
+api
+api
+spotfylike-api
+criar
+
+copia a chave
+
+Volta no postman e cria um header
+pra pegar o nome do header
+volta na api
+aba test
+ao inves de clicar em send
+clica em trace
+depois na aba trace
+Key: ocp-apim-subscription-key Value: a key
+nome do header é
+Key: ocp-apim-apiid: Value: spotify-like-api
+foi só o subsctrition key que é obrigatorio
+
+por que isso
+agora posso colocar politicas em cima dos produtos
+para o front acessar
+
+vamos adicionar politicas
+
+
+Fazendo em todas as operações de get e post
+
+0126
+
+dentro do GET
+
+
+Vou criar uma politica que se eu fizer mais de 5 requisições
+no periodo de 30 segundos eu vou tomar um erro
+
+na aba de design da api em inbound processing
+clica em add policy
+
+limit call rate
+
+rate limit
+
+
+Limit call rate
+Set rate limit policy to control the number of requests reaching the backend service.
+
+Learn more about "rate-limit-by-key" policy.
+
+Number of calls
+5
+Renewal period (in seconds)
+30
+Counter key
+API subscription
+Increment condition
+Successful response (2xx code)
+
+
+ele aparece no código
+
+      <base />
+        <rate-limit-by-key calls="5" renewal-period="30" counter-key="@(context.Subscription?.Key ?? "anonymous")" increment-condition="@(context.Response.StatusCode >= 200 && context.Response.StatusCode < 300)" />
+    </inbound>
+
+vamos testar
+no postman
+
+no plano consuption nao pode fazer isso
+
+
+Exemplo do itau que tem o development que quer usar apis do itau quando o dev
+cadastra no portal ele gera essa key pra fazer integração e documentação
+
+
+0137
+
+Application Insight
+
+
+0156
+
+Duas maneiras de fazer
+
+clica em cima do projeto botao direito
+adicionar
+application insight
+
+
+ou mac
+manage nuget package e buscar application insights aspnetCore
+usei esse link para o mac
+https://learn.microsoft.com/pt-br/azure/azure-monitor/app/asp-net-core?tabs=netcorenew#enable-application-insights-server-side-telemetry-no-visual-studio
+
+executa
+vai na aplicacao web app da azure em monitoramento
+Application insights
+tem um box escrito
+
+
+                
+O aplicativo está conectado ao recurso do Application Insights: spotify-infnet-api3
+
+clica no link
+e ele ja esta fazendo o monitoramento
+
+
+
+
+
+
+
+
+
+
+
+
+
+

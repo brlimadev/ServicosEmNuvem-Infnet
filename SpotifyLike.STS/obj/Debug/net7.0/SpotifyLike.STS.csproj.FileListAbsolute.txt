@@ -1,5 +1,3 @@
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.STS/bin/Debug/net7.0/appsettings.Development.json
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.STS/bin/Debug/net7.0/appsettings.json
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.STS/bin/Debug/net7.0/SpotifyLike.STS
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.STS/bin/Debug/net7.0/SpotifyLike.STS.deps.json
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.STS/bin/Debug/net7.0/SpotifyLike.STS.runtimeconfig.json

@@ -1,4 +1,4 @@
-﻿<Properties StartupConfiguration="{686C5D51-B650-4F84-8910-8A126C5DF34E}|http" GitUserInfo="UsingGIT">
+﻿<Properties StartupConfiguration="{804750EA-C659-4EB2-B4CE-D23B5D344E91}|https" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.ItemProperties.docker-compose PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -25,7 +25,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
 </Properties>

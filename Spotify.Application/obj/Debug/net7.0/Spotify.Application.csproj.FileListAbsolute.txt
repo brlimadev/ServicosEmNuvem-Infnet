@@ -1,3 +1,8 @@
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/Microsoft.Azure.Cosmos.ServiceInterop.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/Cosmos.CRTCompat.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/msvcp140.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/vcruntime140.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/vcruntime140_1.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/Spotify.Application.deps.json
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/Spotify.Application.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/Spotify.Application.pdb
@@ -15,8 +20,3 @@
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/refint/Spotify.Application.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/Spotify.Application.pdb
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/obj/Debug/net7.0/ref/Spotify.Application.dll
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/Microsoft.Azure.Cosmos.ServiceInterop.dll
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/Cosmos.CRTCompat.dll
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/msvcp140.dll
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/vcruntime140.dll
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/Spotify.Application/bin/Debug/net7.0/vcruntime140_1.dll
