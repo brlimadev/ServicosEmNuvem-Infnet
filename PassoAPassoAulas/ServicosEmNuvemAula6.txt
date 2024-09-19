@@ -1,1 +1,150 @@
-Começando a aula 6
+0018
+Criar um Storage Account no Azure
+
+Create Resource
+Storage(penultima)
+Storage Account(Conta de Armazenamento)
+Nome spotifylikestorage (nao pode ter traço nem ponto)
+Region Central US
+Primary Service Azure Blob Storage(Serviço primario armazenamento de blob)
+Primary worload Cloud Native(carga de trabalho principal: nuvem nativa)
+Redundancia GRS
+Next
+Avancado nao mexe em nada
+Habilitar Storage key
+Camada de acesso Hot
+Next
+Rede
+Habilitar Acesso Publico
+Next
+Data Protection proteção de dados
+Backup dos arquivos por um periodo na lixeira
+e Tracking que é o versionamento do arquivo
+Deixa tudo padrao e da
+Next
+Criptografia
+Nao Muda nada
+Next
+Review Create
+
+0025
+Recurso criado entra nele
+
+na pagina inicial
+habilitar o blob anonimous access acesso anonimo ao blob
+Permitir acesso anônimo ao Blob
+Habilitado
+
+espera 30 segundos
+
+entra na aba de storage browser (Navegador de armazenamento)como se fosse a pasta
+Containers de blobs e nao tem nada
+
+Clica em add container e cria como se fosse a pasta
+nome backdrop-images
+
+nivel de acesso
+Container
+
+0030
+Fazer upload pra dentro da pasta
+
+Adicionar os pacotes
+
+Dentro do .Application
+/streaming
+
+Criar a pasta Chamada Storage
+e dentro dela um item classe chamado
+AzureStorageAccount.cs
+
+
+Documentação da Microsoft
+https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-dotnet-get-started?tabs=azure-ad
+
+
+Adicionar os pacotes no .Application
+
+Azure.Storage.blobs
+Agora dentro do .Api Cria mais uma chave no appSettings
+
+ "AzureStorageAccount": {
+    "AccountName": "spotifylikestorage",
+    "AccessKey": "/moCa11N6uLq7mE/FjDH0ozoLLTykQgLH+eiLwy2+VIUVn+=="
+  },
+
+Onde pega essa acceskey
+
+Secusity e networking
+
+acces key
+
+0036
+Cria o método que faz upload da imagem na classe AzureStorageAccount.cs
+
+
+0043
+Testa subindo uma imagem qualquer na pasta
+clica nela depois
+clica no link
+e joga no navegador
+vc vai ver hospedada a imagem que vc subiu que vc subiu
+
+o link que ele cria
+https://spotifylikestorage2.blob.core.windows.net/backdrop-images/BrunoMars-BackDropAzureStorageBlobs.webp
+
+Upload ja feito
+Agora preciso quando criar uma banda vou injetar o Azure Storage account
+
+BandaService.cs
+
+  public class BandaService
+    {
+        private BandaRepository BandaRepository { get; set; }
+        private IMapper Mapper { get; set; }
+        private AzureStorageAccount AzureStorageAccount { get; set; }
+
+    public BandaService(BandaRepository bandaRepository, IMapper mapper,
+            AzureStorageAccount azureStorageAccount)
+        {
+            BandaRepository = bandaRepository;
+            Mapper = mapper;
+            AzureStorageAccount = azureStorageAccount;
+        }
+
+  public async Task<BandaDto> Criar(BandaDto dto)
+        {
+            Banda banda = this.Mapper.Map<Banda>(dto);
+            var urlBackdrop = await this.AzureStorageAccount.UploadImage(dto.Backdrop);
+            banda.Backdrop = urlBackdrop;
+            await this.BandaRepository.SaveOrUpate(banda, banda.BandaKey);
+
+            return this.Mapper.Map<BandaDto>(banda);
+        }
+
+Program.cs
+inserir
+
+builder.Services.AddScoped<AzureStorageAccount>();
+
+0047
+
+Converte a imagem em base 64
+image base64 convert no google
+
+https://www.base64encoder.io/image-to-base64-converter/
+
+
+roda a aplicacao
+deleta a banda la no cosmosDB
+entra no post banda
+
+agora no backdrop joga essa base encoding string é grande mesmo
+
+
+
+
+
+
+
+
