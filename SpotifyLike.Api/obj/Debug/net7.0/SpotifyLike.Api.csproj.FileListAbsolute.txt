@@ -3,7 +3,6 @@
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/msvcp140.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/vcruntime140.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/vcruntime140_1.dll
-/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/appsettings.json
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/SpotifyLike.Api
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/SpotifyLike.Api.deps.json
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/SpotifyLike.Api.runtimeconfig.json
