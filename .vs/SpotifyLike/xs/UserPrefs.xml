@@ -1,4 +1,4 @@
-﻿<Properties StartupConfiguration="{804750EA-C659-4EB2-B4CE-D23B5D344E91}|https" GitUserInfo="UsingGIT">
+﻿<Properties StartupConfiguration="{9BB230D0-BD72-48B6-842A-DA2BACB84766}|Default" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.ItemProperties.SpotifyLike.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="SpotifyLike.Repository/CosmosDBContext.cs">
@@ -25,5 +25,5 @@
   <MonoDevelop.Ide.ItemProperties.SpotifyLike.STS PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.ProcessaNotificacaoVersao2 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.ProcessaNotificacaoVersao3 PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>
