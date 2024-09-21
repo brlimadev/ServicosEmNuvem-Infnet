@@ -28,8 +28,4 @@
     <ProjectReference Include="..\SpotifyLike.Repository\SpotifyLike.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="appsettings.json" />
-    <Content Remove="appsettings.Development.json" />
-  </ItemGroup>
 </Project>

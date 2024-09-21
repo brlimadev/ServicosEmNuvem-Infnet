@@ -19,8 +19,6 @@ namespace Spotify.Application.Conta
         {
             this.ConnectionString = configuration["AzureServiceBus:ConnectionString"];
         }
-
-
         //Método que envia a mensagem
         public async Task SendMessage(Notificacao notificacao)
         {

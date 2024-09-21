@@ -117,3 +117,5 @@
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.pdb
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/SpotifyLike.Api.genruntimeconfig.cache
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/obj/Debug/net7.0/ref/SpotifyLike.Api.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/appsettings.Development.json
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/appsettings.json
