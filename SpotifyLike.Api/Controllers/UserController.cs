@@ -10,9 +10,8 @@ namespace SpotifyLike.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "spotifylike-user")]
     //[Authorize(Roles = "spotifylike-user")]
-    [AllowAnonymous]
-
     public class UserController : ControllerBase
     {
         private UsuarioService _usuarioService;
@@ -23,12 +22,12 @@ namespace SpotifyLike.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Criar(UsuarioDto dto)
+        public IActionResult Criar(UsuarioDto dto)
         {
             if (ModelState is { IsValid: false })
                 return BadRequest();
 
-            var result = await this._usuarioService.Criar(dto);
+            var result = this._usuarioService.Criar(dto);
 
             return Ok(result);
         }
@@ -46,12 +45,12 @@ namespace SpotifyLike.Api.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] Request.LoginRequest login)
+        public IActionResult Login([FromBody] Request.LoginRequest login)
         {
             if (ModelState.IsValid == false)
                 return BadRequest();
 
-            var result = await this._usuarioService.Autenticar(login.Email, login.Senha);
+            var result = this._usuarioService.Autenticar(login.Email, login.Senha);
 
             if (result == null)
             {
@@ -64,7 +63,6 @@ namespace SpotifyLike.Api.Controllers
             return Ok(result);
 
         }
-
 
     }
 }
