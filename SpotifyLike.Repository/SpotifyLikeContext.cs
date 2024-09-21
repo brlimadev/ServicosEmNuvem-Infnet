@@ -34,8 +34,6 @@ namespace SpotifyLike.Repository
         {
 
         }
-
-
         //Escrever protected internal e vai aparecer OnModelCreating
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -54,6 +54,7 @@ namespace SpotifyLike.Tests.Domain
             //Assert.True(usuario.Playlists.Count > 0);
             //Assert.True(usuario.Playlists[0].Nome == "Favoritas");
             //Assert.False(usuario.Playlists[0].Publica);
+
         }
 
         [Fact]

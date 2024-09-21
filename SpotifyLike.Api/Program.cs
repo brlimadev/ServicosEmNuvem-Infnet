@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplicationInsightsTelemetry();
 builder.Services.AddScoped<AzureServiceBusService>();
 
+
 // Add services to the container.
 
 builder.Services.AddControllers();

@@ -2,7 +2,6 @@
 using Spotify.Application.Conta.Dto;
 using SpotifyLike.Domain.Conta.Agreggates;
 using SpotifyLike.Domain.Core.Extension;
-using SpotifyLike.Domain.Notificacao;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using SpotifyLike.Domain.Transacao.Agreggates;
 using SpotifyLike.Repository.Repository;
@@ -87,4 +86,5 @@ namespace Spotify.Application.Conta
             return result;
         }
     }
+
 }

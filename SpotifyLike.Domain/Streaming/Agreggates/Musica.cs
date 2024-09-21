@@ -16,5 +16,6 @@ namespace SpotifyLike.Domain.Streaming.Aggregates
 
         public virtual IList<Playlist> Playlists { get; set; } = new List<Playlist>();
 
+
     }
 }
