@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyLike.STS", "SpotifyL
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{18585786-E802-4CA2-AD40-3D716F8D2CAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessaNotificacaoVersao3", "..\ProcessaNotificacaoVersao2\ProcessaNotificacaoVersao3.csproj", "{9BB230D0-BD72-48B6-842A-DA2BACB84766}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessaNotificacaoVersao2", "..\ProcessaNotificacaoVersao2\ProcessaNotificacaoVersao2.csproj", "{9BB230D0-BD72-48B6-842A-DA2BACB84766}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
