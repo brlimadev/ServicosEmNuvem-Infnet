@@ -25,8 +25,8 @@ namespace SpotifyLike.Repository.Mapping.Conta
 
             builder.HasMany(x => x.Cartoes).WithOne();
             builder.HasMany(x => x.Assinaturas).WithOne();
-            builder.HasMany(x => x.Playlists).WithOne(x => x.Usuario);
-            
+            //builder.HasMany(x => x.Playlists).WithOne(x => x.Usuario);
+
         }
     }
 }

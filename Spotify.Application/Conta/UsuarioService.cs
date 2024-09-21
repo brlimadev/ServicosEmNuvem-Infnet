@@ -2,6 +2,7 @@
 using Spotify.Application.Conta.Dto;
 using SpotifyLike.Domain.Conta.Agreggates;
 using SpotifyLike.Domain.Core.Extension;
+using SpotifyLike.Domain.Notificacao;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using SpotifyLike.Domain.Transacao.Agreggates;
 using SpotifyLike.Repository.Repository;
@@ -19,20 +20,24 @@ namespace Spotify.Application.Conta
         private UsuarioRepository UsuarioRepository { get; set; }
         private PlanoRepository PlanoRepository { get; set; }
 
+        private AzureServiceBusService ServiceBusService { get; set; }
 
-        public UsuarioService(IMapper mapper, UsuarioRepository usuarioRepository, PlanoRepository planoRepository)
+        public UsuarioService(IMapper mapper,
+            UsuarioRepository usuarioRepository, PlanoRepository planoRepository,
+            AzureServiceBusService serviceBusService)
         {
             Mapper = mapper;
             UsuarioRepository = usuarioRepository;
             PlanoRepository = planoRepository;
+            ServiceBusService = serviceBusService;
         }
 
-        public UsuarioDto Criar(UsuarioDto dto)
+
+        public async Task<UsuarioDto> Criar(UsuarioDto dto)
         {
-            if (this.UsuarioRepository.Exists(x => x.Email == dto.Email)) 
+            if (this.UsuarioRepository.Exists(x => x.Email == dto.Email))
                 throw new Exception("Usuario já existente na base");
-            
-            
+
             Plano plano = this.PlanoRepository.GetById(dto.PlanoId);
 
             if (plano == null)
@@ -47,8 +52,15 @@ namespace Spotify.Application.Conta
             this.UsuarioRepository.Save(usuario);
             var result = this.Mapper.Map<UsuarioDto>(usuario);
 
+            //Notificar o usuário
+            Notificacao notificacao = new Notificacao()
+            {
+                Mensagem = $"Conta criada com sucesso. Seja bem vindo ao Spotify Like {usuario.Nome}",
+                Nome = usuario.Nome,
+                IdUsuario = usuario.Id
+            };
+            await this.ServiceBusService.SendMessage(notificacao);
             return result;
-
         }
 
         public UsuarioDto Obter(Guid id)
@@ -58,10 +70,20 @@ namespace Spotify.Application.Conta
             return result;
         }
 
-        public UsuarioDto Autenticar(String email, String senha)
+        public async Task<UsuarioDto> Autenticar(String email, String senha)
         {
             var usuario = this.UsuarioRepository.Find(x => x.Email == email && x.Senha == senha.HashSHA256()).FirstOrDefault();
             var result = this.Mapper.Map<UsuarioDto>(usuario);
+
+            //Notificar o usuário
+            Notificacao notificacao = new Notificacao()
+            {
+                Mensagem = $"Alerta vc esta sendo notificado, pois o {usuario.Nome} fez login em {DateTime.Now}",
+                Nome = usuario.Nome,
+                IdUsuario = usuario.Id
+            };
+            await this.ServiceBusService.SendMessage(notificacao);
+
             return result;
         }
     }

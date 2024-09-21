@@ -5,7 +5,10 @@ using SpotifyLike.Domain.Conta.Agreggates;
 using SpotifyLike.Domain.Notificacao;
 using SpotifyLike.Domain.Streaming.Aggregates;
 using SpotifyLike.Domain.Transacao.Agreggates;
+using SpotifyLike.Repository.Mapping.Conta;
+using SpotifyLike.Repository.Mapping.Notificacao;
 using SpotifyLike.Repository.Mapping.Streaming;
+using SpotifyLike.Repository.Mapping.Transacao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +21,13 @@ namespace SpotifyLike.Repository
     {
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Assinatura> Assinaturas { get; set; }
-        public DbSet<Playlist> Playlists { get; set; }
+        //public DbSet<Playlist> Playlists { get; set; }
         public DbSet<Notificacao> Notificacoes { get; set; }
         public DbSet<Cartao> Cartoes { get; set; }
         public DbSet<Transacao> Transacao { get; set; }
-        public DbSet<Banda> Bandas { get; set; }
-        public DbSet<Album> Albuns { get; set; }
-        public DbSet<Musica> Musicas { get; set; }
+        //public DbSet<Banda> Bandas { get; set; }
+        //public DbSet<Album> Albuns { get; set; }
+        //public DbSet<Musica> Musicas { get; set; }
         public DbSet<Plano> Planos { get; set; }
 
         public SpotifyLikeContext(DbContextOptions<SpotifyLikeContext> options) : base(options)
@@ -36,7 +39,13 @@ namespace SpotifyLike.Repository
         //Escrever protected internal e vai aparecer OnModelCreating
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(SpotifyLikeContext).Assembly);
+            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(SpotifyLikeContext).Assembly);
+            modelBuilder.ApplyConfiguration(new UsuarioMapping());
+            modelBuilder.ApplyConfiguration(new PlanoMapping());
+            modelBuilder.ApplyConfiguration(new CartaoMapping());
+            modelBuilder.ApplyConfiguration(new TransacaoMapping());
+            modelBuilder.ApplyConfiguration(new NotificacaoMapping());
+            modelBuilder.ApplyConfiguration(new AssinaturaMapping());
             base.OnModelCreating(modelBuilder);
         }
 

@@ -27,11 +27,11 @@ namespace SpotifyLike.Domain.Conta.Agreggates
         public DateTime DtNascimento { get; set; }
         public virtual IList<Cartao> Cartoes { get; set; } = new List<Cartao>();
         public virtual IList<Assinatura> Assinaturas { get; set; } = new List<Assinatura>();
-        public virtual IList<Playlist> Playlists { get; set; } = new List<Playlist>();
+        //public virtual IList<Playlist> Playlists { get; set; } = new List<Playlist>();
         public virtual IList<Notificacao.Notificacao> Notificacoes { get; set; } = new List<Notificacao.Notificacao>();
 
 
-        public void CriarConta(string nome, string email, string senha, DateTime dtNascimento ,Plano plano, Cartao cartao)
+        public void CriarConta(string nome, string email, string senha, DateTime dtNascimento, Plano plano, Cartao cartao)
         {
             this.Nome = nome;
             this.Email = email;
@@ -54,16 +54,16 @@ namespace SpotifyLike.Domain.Conta.Agreggates
 
         public void CriarPlaylist(string nome, bool publica = true)
         {
-            this.Playlists.Add(new Playlist()
-            {
-                Nome = nome,
-                Publica = publica,
-                DtCriacao = DateTime.Now,
-                Usuario = this
-            });
+            //this.Playlists.Add(new Playlist()
+            //{
+            //    Nome = nome,
+            //    Publica = publica,
+            //    DtCriacao = DateTime.Now,
+            //    Usuario = this
+            //});
         }
 
-        private void AdicionarCartao(Cartao cartao) 
+        private void AdicionarCartao(Cartao cartao)
             => this.Cartoes.Add(cartao);
 
         private void AssinarPlano(Plano plano, Cartao cartao)

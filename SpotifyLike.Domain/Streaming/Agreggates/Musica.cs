@@ -12,7 +12,7 @@ namespace SpotifyLike.Domain.Streaming.Aggregates
     {
         public Guid Id { get; set; }
         public String Nome { get; set; }
-        public Duracao Duracao { get; set; }
+        public virtual Duracao Duracao { get; set; }
 
         public virtual IList<Playlist> Playlists { get; set; } = new List<Playlist>();
 

@@ -1,1 +1,159 @@
 Inciando aula 08
+
+Azure service Bus
+
+Azure Functions
+
+Primeira coisa é enviar a mensagem pra fila
+
+No Azure
+Create Resource
+Digita Azure Service Bus
+clica nele
+depois create
+
+nome: spotify-notification
+
+pricing tier
+Basic
+0,05 por 1 milhao de mensagens
+avancado mantem
+network public
+review create
+creste
+
+depois de criado nova fila
+
+Nome
+notiifications
+tamanho maximo
+quantidade 10
+quanto tempo ela pode ficar disponivel na fila
+
+create
+
+
+vai no projeto
+dentro de .application
+dentro da pasta conta
+criar a classe
+AzureServiceBus.cs
+
+a ideia é notificar sempre que um usuario criar uma conta
+
+
+Criado a classe notificacao
+
+que contem o nome do usuario e a mensagem
+
+0020
+Instalar o pacote no .application
+
+Buscar Azure.Messaging.ServiceBus
+
+Depois de instalar
+ja posso mandar a mensagem
+
+Editando e criando o arquivo AzureServiceBus.cs
+
+Criar a chave dentro do appsettings do .api
+
+Como pego a connectionstring
+dentro do servico do azure bus
+settings shared acces polices
+Cadeia de Conexão Primária
+
+
+  "AzureServiceBus": {
+    "ConnectionString": "n.servicebus.windows.net/;=;=+="
+  }
+
+Adiciona no Program.cs do.api
+
+builder.Services.AddScoped<AzureServiceBusService>();
+
+agora ta pronto pra ser usado aonde quiser usuario, banda onde quiser
+
+
+só acrescentar o notificar em qualquer metodo nesse padrao
+
+
+ public async Task<UsuarioDto> Criar(UsuarioDto dto)
+        {
+            if (this.UsuarioRepository.Exists(x => x.Email == dto.Email)) 
+                throw new Exception("Usuario já existente na base");
+            
+            Plano plano = this.PlanoRepository.GetById(dto.PlanoId);
+
+            if (plano == null)
+                throw new Exception("Plano não existente ou não encontrado");
+
+            Cartao cartao = this.Mapper.Map<Cartao>(dto.Cartao);
+
+            Usuario usuario = new Usuario();
+            usuario.CriarConta(dto.Nome, dto.Email, dto.Senha, dto.DtNascimento, plano, cartao);
+
+            //TODO: GRAVAR MA BASE DE DADOS
+            this.UsuarioRepository.Save(usuario);
+            var result = this.Mapper.Map<UsuarioDto>(usuario);
+
+            //Notificar o usuário
+            Notificacao notificacao = new Notificacao()
+            {
+                Mensagem = $"Conta criada com sucesso. Seja bem vindo ao Spotify Like {usuario.Nome}",
+                Nome = usuario.Nome,
+                IdUsuario = usuario.Id
+            };
+            await this.ServiceBusService.SendMessage(notificacao);
+            return result;
+        }
+
+
+
+0117
+
+Criar um novo projeto pra consumir a fila
+tipo azure function
+Depois Bus
+depois coloca o nome da connectionstring
+e o nome da fila
+e criar
+
+entra no arquivo localSettings
+
+por algum motivo ele nao pega o servico azure functions service bus
+
+
+clica com direito no projeto add manage nuget package e add
+azure functions service bus
+
+na hora de criar o projeto escolher o (isolado)
+Net 6.0 isolado
+
+e a connection string do serviço de api deve estar igual a do serviço de processar fila
+
+voce cria a mensagem novamente para ela entrar na fila e depois processa o envio
+
+Funcionou, agora vamos publicar
+0131
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

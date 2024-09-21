@@ -10,7 +10,7 @@ namespace Spotify.Application.Conta.Dto
 {
     public class UsuarioDto
     {
-        
+
         public Guid Id { get; set; }
 
         [Required]
@@ -29,7 +29,7 @@ namespace Spotify.Application.Conta.Dto
         public Guid PlanoId { get; set; }
 
 
-        [Required]        
+        [Required]
         public CartaoDto Cartao { get; set; }
 
     }
