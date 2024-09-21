@@ -10,7 +10,9 @@
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/SpotifyLike.Api.pdb
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/AutoMapper.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Azure.Core.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Azure.Core.Amqp.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Azure.Identity.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Azure.Messaging.ServiceBus.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Azure.Storage.Blobs.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Azure.Storage.Common.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Castle.Core.dll
@@ -26,6 +28,7 @@
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.AI.WindowsServer.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.AI.ServerTelemetryChannel.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Azure.Amqp.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Azure.Cosmos.Client.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Azure.Cosmos.Core.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Azure.Cosmos.Direct.dll
