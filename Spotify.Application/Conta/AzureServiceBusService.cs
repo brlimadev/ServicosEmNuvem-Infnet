@@ -17,7 +17,7 @@ namespace Spotify.Application.Conta
         //Como vou receber isso atraves desse AzureServiceBusService
         public AzureServiceBusService(IConfiguration configuration)
         {
-            this.ConnectionString = configuration["AzureServiceBus:ConnectionString"];
+            this.ConnectionString = configuration["AzureServiceBus_ConnectionString"];
         }
 
         //Método que envia a mensagem
