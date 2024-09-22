@@ -18,6 +18,11 @@
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Azure.Storage.Blobs.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Azure.Storage.Common.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Castle.Core.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Google.Protobuf.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Grpc.Core.Api.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Grpc.Net.Client.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Grpc.Net.ClientFactory.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Grpc.Net.Common.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Humanizer.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/IdentityModel.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/IdentityModel.AspNetCore.OAuth2Introspection.dll
@@ -35,6 +40,10 @@
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Azure.Cosmos.Core.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Azure.Cosmos.Direct.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Azure.Cosmos.Serialization.HybridRow.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Azure.Functions.Worker.Core.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Azure.Functions.Worker.Extensions.Abstractions.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Azure.Functions.Worker.Extensions.Rpc.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Azure.Functions.Worker.Extensions.ServiceBus.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Bcl.HashCode.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Data.SqlClient.dll
@@ -44,6 +53,7 @@
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Proxies.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+/Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Extensions.Azure.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Extensions.Logging.ApplicationInsights.dll
 /Users/brunolima/Projects/ServicosEmNuvem-Infnet/SpotifyLike.Api/bin/Debug/net7.0/Microsoft.Identity.Client.dll

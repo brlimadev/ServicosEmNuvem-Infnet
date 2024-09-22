@@ -30,7 +30,7 @@ namespace Spotify.Application.Conta
             //Client pega o cara que envia pela connectionstring
             client = new ServiceBusClient(this.ConnectionString);
             // Para qual fila to enviando
-            sender = client.CreateSender("notiifications");
+            sender = client.CreateSender("notification");
             //Criar a mensagem no padrao que o azure precisa em Json Mesmo
             var body = JsonSerializer.Serialize(notificacao);
             // A mensage recebe o body
