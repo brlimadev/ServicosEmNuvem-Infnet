@@ -29,7 +29,10 @@ Bem-vindo ao meu repositório para a disciplina de Serviços em Nuvem da Pós-Gr
 - **Códigos Fontes**: Código desenvolvido durante as aulas e atividades práticas.
 - **Links de Vídeos**: Abaixo, você encontrará links de vídeos feitos por mim no YouTube rodando algumas partes do projeto.
 
+- [🎥 Projeto SpotifyLike - Infnet 2024 - Pós Graduação - MIT Engenharia de Software]([https://www.youtube.com/watch?v=1GfK7H36ZVU](https://youtu.be/v_zdhG2T5cE))
 - [🎥 Autenticação de Token JWT](https://www.youtube.com/watch?v=1GfK7H36ZVU)
+- [🎥 Buscar Banda]([https://www.youtube.com/watch?v=1GfK7H36ZVU](https://youtu.be/MgXDZwceaV4))
+- [🎥 Favoritar e Desfavoritar Músicas]([https://www.youtube.com/watch?v=1GfK7H36ZVU](https://youtu.be/MgXDZwceaV4)](https://youtu.be/2UdwRnDd-Kc))
 
 ## Estrutura do Repositório 📂
 
