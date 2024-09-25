@@ -34,21 +34,18 @@ Bem-vindo ao meu repositório para a disciplina de Serviços em Nuvem da Pós-Gr
 - 🎞️ [Buscar Banda](https://youtu.be/MgXDZwceaV4)
 - 📽️ [Favoritar e Desfavoritar Músicas](https://youtu.be/2UdwRnDd-Kc)
 - 🎦 [Aplicação e Banco Rodando No Servidor Azure](https://youtu.be/_XaBwYLlYJw)
-  
 - 📺 [Criando a Imagem Docker](https://youtu.be/gsyUsF-1Go0)
 - 🎬 [Criando o container Docker na Azure](https://youtu.be/0xh5V38feDQ)
 - 🎥 [Subindo o Docker via Push Para Azure no Terminal](https://youtu.be/3kfw9pYkq7Y)
 - 🎞️ [Testando versionamento no Docker com AppSettings Mostrando Docker Rodando](https://youtu.be/sPJDxthVob4)
 - 📽️ [Docker Rodando o Banco de dados](https://youtu.be/2ZhPSe8B-yc)
 - 📺 [Esteira de Publicação via Github Action alterando AppSettings Para testar Aplicação na Nuvem](https://youtu.be/cmp8vtWHhnc)
-- 
 - 🎬 [Simulando o Docker Rodando com Alterações Locais e na Nuvem](https://youtu.be/NFXx3PCe4QU)
 - 🎥 [Testando a Criação De Banda no Banco de Dados NoSQL Cosmos DB](https://youtu.be/IGv8FXxOzr0)
 - 🎞️ [Azure Storage Account Para subir as Imagens do BackDrop da Banda No Banco de Dados Cosmos](https://youtu.be/t4Z65O-jMzI)
-
 - 📽️ [Servico Azure De Processamento De Fila De Envio De Mensagem Pelo Azure Service Bus](https://youtu.be/mCzUJzU1QiU)
 - 📺 [Application Insights para Monitorar a aplicação com Dados sobre a aplicação em DashBoards](https://youtu.be/x6JaQ7h57iM)
-- 🎬 [Azure Api Management Para Gerenciar o Acesso Aos métodos da Aplicação]([https://youtu.be/l-EjKEfJ49s)
+- 🎬 [Azure Api Management Para Gerenciar o Acesso Aos métodos da Aplicação](https://youtu.be/l-EjKEfJ49s)
 - 🎥 [Azure Function Mensage Com ServiceBus para envio de mensagem de Cadastro de usuário e de login](https://youtu.be/I65-7ghp1Ho)
 - 🎞️ [Serviço De Processamento De Fila De Envio De Mensagens Pelo AzureServiceBus para processar a Fila](https://youtu.be/H1NOdGKksos)
 
